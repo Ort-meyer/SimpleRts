@@ -1,0 +1,12 @@
+@startuml
+
+class1 ..> class2 : Undefined
+class2 --> class3 : Class 2 uses class 3 (for instance, driver drives car)
+class3 *--> class4 : Class 3 owns class 4
+class4 o--> class5 : Class 4 has a reference to class 5
+
+class Car
+Driver - Car : drives >
+Car *- Wheel : have 4 >
+Car -- Person : < owns
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+
+class Human {
+
+}
+class AI {
+    
+}
+class Player {
+
+}
+
+class Camera {
+
+}
+
+package Managers {
+    class InputManager {
+
+    }
+
+    class GameManager {
+
+    }
+
+    class TimeManager {
+
+    }
+}
+
+
+
+
+
+class Unit {
+
+}
+
+Camera ..> InputManager
+
+Human o--> Player
+Human ..> InputManager
+AI o--> Player
+
+GameManager *--> Player
+GameManager *--> Unit
+
+Player o--> Unit
+
+Unit ..> TimeManager
+
+
+
+@enduml

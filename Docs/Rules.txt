@@ -1,0 +1,89 @@
+- All my code shall be in namespaces
+- Don't use Invoke and SendMessage
+- Extension methods
+- Use property drawers where applicable
+    + Header and tooltip attributes
+- Sealed Mono methods (update, start etc.)
+- Separate configuration, state and bookkeeping. 
+    + Config: max hp
+    + State: current hp
+    + bookkeeping: previous hp
+- Group data in serializable classes to make things neater in the inspector
+    + E.g. Player has classes Health properties, Movement Properties. Instantiated as player members
+- Singletons for managers
+- Use states for different behaviors
+- Use "scriptable objects" for level data (it's a unity class)
+
+Folder Structure
+MyGame
+   Helper
+      Design 
+      Scratchpad
+   Materials
+   Meshes
+      Actors
+         DarkVampire
+         LightVampire
+         ...
+      Structures
+         Buildings
+         ...
+      Props
+         Plants
+         ...
+      ...
+   Resources
+      Actors
+      Items
+      ...
+   Prefabs
+      Actors
+      Items
+      ...
+   Scenes
+      Menus
+      Levels
+   Scripts
+   Tests
+   Textures
+      UI
+      Effects
+      ...
+   UI 
+MyLibray
+   ...
+Plugins
+SomeOtherAsset1
+SomeOtherAsset2
+...
+Scene Structure
+Main
+Debug
+Managers 
+Cameras
+Lights
+UI
+   Canvas
+      HUD
+      PauseMenu
+      ...
+World
+   Ground
+   Props
+   Structures
+   ...
+Gameplay
+   Actors
+   Items
+   ...
+Dynamic Objects
+Scripts Folder Structure
+Debug
+Gameplay
+   Actors
+   Items
+   ...
+Framework
+Graphics
+UI
+...

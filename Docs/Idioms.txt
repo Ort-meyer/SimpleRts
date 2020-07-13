@@ -1,0 +1,23 @@
+Decided
+- State machines over coroutines
+- Locate objects by reference
+- Group objects by reference
+- Mouse selection handled in input manager
+- Central input handling (classes register functions to input manager)
+
+TODO
+D - Coroutines vs. state machines.
+- Nested prefabs vs. linked prefabs vs. god prefabs.
+- Data separation strategies.
+- Ways of using sprites for states in 2D games.
+- Prefab structure.
+- Spawning strategies.
+D - Ways to locate objects: by type vs. name vs. tag vs. layer vs. reference ("links").
+D - Ways to group objects: by type vs. name vs. tag vs. layer vs. arrays of references ("links").
+- Ways to call methods on other components.
+- Finding groups of objects versus self-registration.
+- Controlling execution order (Using Unity's execution order setup versus yield logic versus Awake / Start and Update / Late Update reliance versus manual methods versus any-order architecture).
+D - Selecting objects / positions / targets with the mouse in-game: selection manager versus local self-management.
+- Keeping data between scene changes: through PlayerPrefs, or objects that are not Destroyed when a new scene is loaded.
+- Ways of combining (blending, adding and layering) animation.
+D - Input handling (central vs. local)

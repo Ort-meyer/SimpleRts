@@ -14,7 +14,7 @@
 - Use states for different behaviors
 - Use "scriptable objects" for level data (it's a unity class)
 
-Folder Structure
+####Folder Structure####
 MyGame
    Helper
       Design 
@@ -56,7 +56,7 @@ Plugins
 SomeOtherAsset1
 SomeOtherAsset2
 ...
-Scene Structure
+####Scene Structure####
 Main
 Debug
 Managers 
@@ -77,7 +77,8 @@ Gameplay
    Items
    ...
 Dynamic Objects
-Scripts Folder Structure
+
+####Scripts Folder Structure####
 Debug
 Gameplay
    Actors

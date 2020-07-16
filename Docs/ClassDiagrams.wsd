@@ -1,5 +1,4 @@
 @startuml
-
 class Human {
 
 }
@@ -11,6 +10,10 @@ class Player {
 }
 
 class Camera {
+
+}
+
+class Terrain {
 
 }
 
@@ -44,10 +47,12 @@ AI o--> Player
 
 GameManager *--> Player
 GameManager *--> Unit
+GameManager *--> Terrain
 
 Player o--> Unit
 
 Unit ..> TimeManager
+Unit ..> Terrain
 
 
 

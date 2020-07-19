@@ -13,6 +13,19 @@ public static class TransformExtensions
     }
 }
 
+public static class DictionaryExtensions
+{
+    /* Adds val to list. If list doesn't exist, create empty and then add */
+    public static void AddToList<TKey, TValue>(this Dictionary<TKey, List<TValue>> dictionary, TKey key, TValue val)
+    {
+        if (!dictionary.ContainsKey(key))
+        {
+            dictionary.Add(key, new List<TValue>());
+        }
+        dictionary[key].Add(val);
+    }
+}
+
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected static T instance;

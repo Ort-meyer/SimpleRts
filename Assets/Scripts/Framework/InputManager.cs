@@ -18,6 +18,7 @@ public enum KeyModifier
 public class InputManager : Singleton<InputManager>
 {
     public delegate void InputMethod();
+
     
     /// <summary>
     /// Internal callback class 
@@ -65,8 +66,10 @@ public class InputManager : Singleton<InputManager>
     /// Member variables
 
     // Dictionary of all callbacks to a certain keycode
-    private Dictionary<KeyCode, List<InputCallback>> inputCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+    private Dictionary<KeyCode, List<InputCallback>> inputPressedCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+    private Dictionary<KeyCode, List<InputCallback>> inputUpCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
 
+    private Dictionary<KeyCode, List<InputCallback>> inputDownCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
     /// Private methods
 
     // Use this for initialization
@@ -78,11 +81,35 @@ public class InputManager : Singleton<InputManager>
     // Update is called once per frame
     void Update()
     {
-        foreach (var kvp in inputCallbacks)
+        foreach (var kvp in inputPressedCallbacks)
+        {
+            KeyCode keyPressed = kvp.Key;
+            List<InputCallback> callbacks = kvp.Value;
+            if (Input.GetKeyDown(keyPressed))
+            {
+                foreach (InputCallback cb in callbacks)
+                {
+                    cb.CallIfConditionsFullfilled();
+                }
+            }
+        }
+        foreach (var kvp in inputUpCallbacks)
         {
             KeyCode keyPressed = kvp.Key;
             List<InputCallback> callbacks = kvp.Value;
             if (Input.GetKeyUp(keyPressed))
+            {
+                foreach (InputCallback cb in callbacks)
+                {
+                    cb.CallIfConditionsFullfilled();
+                }
+            }
+        }
+        foreach (var kvp in inputDownCallbacks)
+        {
+            KeyCode keyPressed = kvp.Key;
+            List<InputCallback> callbacks = kvp.Value;
+            if (Input.GetKey(keyPressed))
             {
                 foreach (InputCallback cb in callbacks)
                 {
@@ -95,15 +122,41 @@ public class InputManager : Singleton<InputManager>
     /// Public Methods
 
     /// <summary>
+    /// Registers a callback method to be called whenever a key is pressed.
+    /// Called regardless of modifier
+    /// </summary>
+    /// <param name="keyPress">What key should trigger the callback</param>
+    /// <param name="callback">Callback method</param>
+    public void RegisterInputCallbackPressed(KeyCode keyPress, InputMethod callback)
+    {
+        InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
+        this.inputPressedCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
+    /// Registers a callback method to be called whenever a key is pressed and
+    /// when the specified modifier is held down (including only when no modifier
+    /// is held down)
+    /// </summary>
+    /// <param name="keyPress">What key should trigger the callback</param>
+    /// <param name="modifier">Callback method</param>
+    /// <param name="callback">What modifier should be held down to trigger callback</param>
+    public void RegisterInputCallbackPressed(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    {
+        InputCallback newCb = new InputCallback(callback, modifier);
+        this.inputPressedCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
     /// Registers a callback method to be called whenever a key is released.
     /// Called regardless of modifier
     /// </summary>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="callback">Callback method</param>
-    public void RegisterInputCallback(KeyCode keyPress, InputMethod callback)
+    public void RegisterInputCallbackReleased(KeyCode keyPress, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
-        this.inputCallbacks.AddToList(keyPress, newCb);
+        this.inputUpCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -114,9 +167,35 @@ public class InputManager : Singleton<InputManager>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="modifier">Callback method</param>
     /// <param name="callback">What modifier should be held down to trigger callback</param>
-    public void RegisterInputCallback(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    public void RegisterInputCallbackReleased(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, modifier);
-        this.inputCallbacks.AddToList(keyPress, newCb);
+        this.inputUpCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
+    /// Registers a callback method to be called whenever a key is held down.
+    /// Called regardless of modifier
+    /// </summary>
+    /// <param name="keyPress">What key should trigger the callback</param>
+    /// <param name="callback">Callback method</param>
+    public void RegisterInputCallbackDown(KeyCode keyPress, InputMethod callback)
+    {
+        InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
+        this.inputDownCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
+    /// Registers a callback method to be called whenever a key is held down and
+    /// when the specified modifier is held down (including only when no modifier
+    /// is held down)
+    /// </summary>
+    /// <param name="keyPress">What key should trigger the callback</param>
+    /// <param name="modifier">Callback method</param>
+    /// <param name="callback">What modifier should be held down to trigger callback</param>
+    public void RegisterInputCallbackDown(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    {
+        InputCallback newCb = new InputCallback(callback, modifier);
+        this.inputDownCallbacks.AddToList(keyPress, newCb);
     }
 }

@@ -8,10 +8,10 @@ public class SimpleDebugScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InputManager.Instance.RegisterInputCallback(KeyCode.Mouse1, RightClick);
-        InputManager.Instance.RegisterInputCallback(KeyCode.Mouse1, RightClick2);
-        InputManager.Instance.RegisterInputCallback(KeyCode.Mouse1, KeyModifier.Shift, ShiftRightClick);
-        InputManager.Instance.RegisterInputCallback(KeyCode.Mouse1, KeyModifier.None, ExclusiveRightClick);
+        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, RightClick);
+        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, RightClick2);
+        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.Shift, ShiftRightClick);
+        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.None, ExclusiveRightClick);
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 public class OldMainCamera : MonoBehaviour
 {
 
-    public float m_keyMoveSpeed;
+    //public float m_keyMoveSpeed;
     public float m_mouseMoveSpeed;
     public float m_rotationSpeed;
     public float m_zoomSpeed;
@@ -25,36 +25,12 @@ public class OldMainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleKeyInput();
         HandleMouseRotation();
         HandleMouseScroll();
         // HandleMouseUpDownMovement();
 
     }
 
-    private void HandleKeyInput()
-    {
-        Vector3 movement = new Vector3(0, 0, 0);
-        // Forward and back
-        if (Input.GetKey(KeyCode.W))
-        {
-            movement += new Vector3(transform.forward.x, 0, transform.forward.z) * m_keyMoveSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            movement += new Vector3(transform.forward.x, 0, transform.forward.z) * m_keyMoveSpeed * Time.deltaTime * -1;
-        }
-        // Right and left
-        if (Input.GetKey(KeyCode.A))
-        {
-            movement += transform.right * m_keyMoveSpeed * Time.deltaTime * -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            movement += transform.right * m_keyMoveSpeed * Time.deltaTime;
-        }
-        transform.position += movement;
-    }
     private void HandleMouseRotation()
     {
         // Rotation around own axis

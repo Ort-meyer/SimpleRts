@@ -18,8 +18,9 @@ public enum KeyModifier
 public class InputManager : Singleton<InputManager>
 {
     public delegate void InputMethod();
+    public delegate void ScrollInputMethod(float scrollValue);
 
-    
+
     /// <summary>
     /// Internal callback class 
     /// </summary>
@@ -70,6 +71,8 @@ public class InputManager : Singleton<InputManager>
     private Dictionary<KeyCode, List<InputCallback>> inputUpCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
 
     private Dictionary<KeyCode, List<InputCallback>> inputDownCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+
+    private List<ScrollInputMethod> scrollCallbacks = new List<ScrollInputMethod>();
     /// Private methods
 
     // Use this for initialization
@@ -115,6 +118,15 @@ public class InputManager : Singleton<InputManager>
                 {
                     cb.CallIfConditionsFullfilled();
                 }
+            }
+        }
+
+        float scrollVal = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scrollVal) > 0)
+        {
+            foreach (ScrollInputMethod cb in scrollCallbacks)
+            {
+                cb(scrollVal);
             }
         }
     }
@@ -197,5 +209,21 @@ public class InputManager : Singleton<InputManager>
     {
         InputCallback newCb = new InputCallback(callback, modifier);
         this.inputDownCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
+    /// Returns vector2 with current mouse position in screenspace
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 GetScreenspaceMousePos()
+    {
+        float xFactor = (Input.mousePosition.x - Screen.width / 2) / Screen.width;
+        float yFactor = (Input.mousePosition.y - Screen.height / 2) / Screen.height * -1;
+        return new Vector2(xFactor, yFactor);
+    }
+
+    public void RegisterScrollInputCallback(ScrollInputMethod callback)
+    {
+        scrollCallbacks.Add(callback);
     }
 }

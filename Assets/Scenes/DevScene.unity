@@ -654,7 +654,6 @@ GameObject:
   - component: {fileID: 1730832681}
   - component: {fileID: 1730832683}
   - component: {fileID: 1730832682}
-  - component: {fileID: 1730832684}
   - component: {fileID: 1730832685}
   m_Layer: 0
   m_Name: Main Camera
@@ -719,20 +718,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1730832684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730832680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caaf8d3c95be6ba41a2a52891f1fdae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_mouseMoveSpeed: 20
-  m_rotationSpeed: 100
-  m_zoomSpeed: 20
 --- !u!114 &1730832685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +731,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configData:
     keyMoveSpeed: 5
+    mouseMoveSpeed: 20
+    mouseRotationSpeed: 100
+    mouseZoomSpeed: 20
 --- !u!1 &1752051249
 GameObject:
   m_ObjectHideFlags: 0

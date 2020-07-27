@@ -13,6 +13,51 @@ public static class TransformExtensions
     }
 }
 
+public static class Vector3Extensions
+{
+    public static float GetDiffAngle2D(this Vector3 forward, Vector3 vectorToTarget)
+    {
+        Vector2 currentDirection = new Vector2(forward.x, forward.z);
+        Vector2 targetDirection = new Vector2(vectorToTarget.x, vectorToTarget.z);
+
+        float diffAngle = Vector2.Angle(currentDirection, targetDirection);
+
+        // For some reason, this angle is absolute. Do some algebra magic to get negative angle
+        Vector3 cross = Vector3.Cross(forward, vectorToTarget);
+        if (cross.y < 0)
+        {
+            diffAngle *= -1;
+        }
+        return diffAngle;
+    }
+}
+
+public static class FloatExtensions
+{
+    public static float Sign(this float number)
+    {
+        if (number == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return Mathf.Sign(number);
+        }
+    }
+
+    // Limits the number to absLimit, with sign (i.e. -40 limited to 30 returns -30)
+    public static float LimitWithSign(this float number, float absLimit)
+    {
+        if (Mathf.Abs(number) > absLimit)
+        {
+            number = Mathf.Sign(number) * absLimit;
+        }
+        return number;
+    }
+}
+
+
 public static class DictionaryExtensions
 {
     /* Adds val to list. If list doesn't exist, create empty and then add */

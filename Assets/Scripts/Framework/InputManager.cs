@@ -67,13 +67,17 @@ public class InputManager : Singleton<InputManager>
     /// Member variables
 
     // Dictionary of all callbacks to a certain keycode
-    private Dictionary<KeyCode, List<InputCallback>> inputPressedCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
-    private Dictionary<KeyCode, List<InputCallback>> inputUpCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+    private Dictionary<KeyCode, List<InputCallback>> m_inputPressedCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+    private Dictionary<KeyCode, List<InputCallback>> m_inputUpCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
 
-    private Dictionary<KeyCode, List<InputCallback>> inputDownCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
+    private Dictionary<KeyCode, List<InputCallback>> m_inputDownCallbacks = new Dictionary<KeyCode, List<InputCallback>>();
 
-    private List<ScrollInputMethod> scrollCallbacks = new List<ScrollInputMethod>();
+    private List<ScrollInputMethod> m_scrollCallbacks = new List<ScrollInputMethod>();
+    private RaycastHit[] m_mouseRaycastHits;
+
     /// Private methods
+
+
 
     // Use this for initialization
     void Start()
@@ -84,7 +88,8 @@ public class InputManager : Singleton<InputManager>
     // Update is called once per frame
     void Update()
     {
-        foreach (var kvp in inputPressedCallbacks)
+        M_DoRaycast();
+        foreach (var kvp in m_inputPressedCallbacks)
         {
             KeyCode keyPressed = kvp.Key;
             List<InputCallback> callbacks = kvp.Value;
@@ -96,7 +101,7 @@ public class InputManager : Singleton<InputManager>
                 }
             }
         }
-        foreach (var kvp in inputUpCallbacks)
+        foreach (var kvp in m_inputUpCallbacks)
         {
             KeyCode keyPressed = kvp.Key;
             List<InputCallback> callbacks = kvp.Value;
@@ -108,7 +113,7 @@ public class InputManager : Singleton<InputManager>
                 }
             }
         }
-        foreach (var kvp in inputDownCallbacks)
+        foreach (var kvp in m_inputDownCallbacks)
         {
             KeyCode keyPressed = kvp.Key;
             List<InputCallback> callbacks = kvp.Value;
@@ -124,11 +129,17 @@ public class InputManager : Singleton<InputManager>
         float scrollVal = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scrollVal) > 0)
         {
-            foreach (ScrollInputMethod cb in scrollCallbacks)
+            foreach (ScrollInputMethod cb in m_scrollCallbacks)
             {
                 cb(scrollVal);
             }
         }
+    }
+
+    private void M_DoRaycast()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        m_mouseRaycastHits = Physics.RaycastAll(ray);
     }
 
     /// Public Methods
@@ -139,10 +150,10 @@ public class InputManager : Singleton<InputManager>
     /// </summary>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="callback">Callback method</param>
-    public void RegisterInputCallbackPressed(KeyCode keyPress, InputMethod callback)
+    public void M_RegisterInputCallbackPressed(KeyCode keyPress, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
-        this.inputPressedCallbacks.AddToList(keyPress, newCb);
+        this.m_inputPressedCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -153,10 +164,10 @@ public class InputManager : Singleton<InputManager>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="modifier">Callback method</param>
     /// <param name="callback">What modifier should be held down to trigger callback</param>
-    public void RegisterInputCallbackPressed(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    public void M_RegisterInputCallbackPressed(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, modifier);
-        this.inputPressedCallbacks.AddToList(keyPress, newCb);
+        this.m_inputPressedCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -165,10 +176,10 @@ public class InputManager : Singleton<InputManager>
     /// </summary>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="callback">Callback method</param>
-    public void RegisterInputCallbackReleased(KeyCode keyPress, InputMethod callback)
+    public void M_RegisterInputCallbackReleased(KeyCode keyPress, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
-        this.inputUpCallbacks.AddToList(keyPress, newCb);
+        this.m_inputUpCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -179,10 +190,10 @@ public class InputManager : Singleton<InputManager>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="modifier">Callback method</param>
     /// <param name="callback">What modifier should be held down to trigger callback</param>
-    public void RegisterInputCallbackReleased(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    public void M_RegisterInputCallbackReleased(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, modifier);
-        this.inputUpCallbacks.AddToList(keyPress, newCb);
+        this.m_inputUpCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -191,10 +202,10 @@ public class InputManager : Singleton<InputManager>
     /// </summary>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="callback">Callback method</param>
-    public void RegisterInputCallbackDown(KeyCode keyPress, InputMethod callback)
+    public void M_RegisterInputCallbackDown(KeyCode keyPress, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, KeyModifier.Any);
-        this.inputDownCallbacks.AddToList(keyPress, newCb);
+        m_inputDownCallbacks.AddToList(keyPress, newCb);
     }
 
     /// <summary>
@@ -205,25 +216,38 @@ public class InputManager : Singleton<InputManager>
     /// <param name="keyPress">What key should trigger the callback</param>
     /// <param name="modifier">Callback method</param>
     /// <param name="callback">What modifier should be held down to trigger callback</param>
-    public void RegisterInputCallbackDown(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
+    public void M_RegisterInputCallbackDown(KeyCode keyPress, KeyModifier modifier, InputMethod callback)
     {
         InputCallback newCb = new InputCallback(callback, modifier);
-        this.inputDownCallbacks.AddToList(keyPress, newCb);
+        m_inputDownCallbacks.AddToList(keyPress, newCb);
+    }
+
+    /// <summary>
+    ///  Registers a callback method to be called whenever the scroll whell is rotated
+    /// </summary>
+    /// <param name="callback"></param>
+    public void M_RegisterScrollInputCallback(ScrollInputMethod callback)
+    {
+        m_scrollCallbacks.Add(callback);
     }
 
     /// <summary>
     /// Returns vector2 with current mouse position in screenspace
     /// </summary>
     /// <returns></returns>
-    public Vector2 GetScreenspaceMousePos()
+    public Vector2 M_GetScreenspaceMousePos()
     {
         float xFactor = (Input.mousePosition.x - Screen.width / 2) / Screen.width;
         float yFactor = (Input.mousePosition.y - Screen.height / 2) / Screen.height * -1;
         return new Vector2(xFactor, yFactor);
     }
 
-    public void RegisterScrollInputCallback(ScrollInputMethod callback)
+    /// <summary>
+    /// Returns array of all hits from a ray cast from mouse pointer
+    /// </summary>
+    /// <returns></returns>
+    public RaycastHit[] M_GetMousePointerHits()
     {
-        scrollCallbacks.Add(callback);
+        return m_mouseRaycastHits;
     }
 }

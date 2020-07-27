@@ -8,10 +8,10 @@ public class SimpleDebugScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, RightClick);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, RightClick2);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.Shift, ShiftRightClick);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.None, ExclusiveRightClick);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.Mouse1, M_RightClick);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.Mouse1, M_RightClick2);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.Shift, M_ShiftRightClick);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.Mouse1, KeyModifier.None, M_ExclusiveRightClick);
     }
 
     // Update is called once per frame
@@ -20,19 +20,19 @@ public class SimpleDebugScript : MonoBehaviour
 
     }
 
-    private void RightClick()
+    private void M_RightClick()
     {
         Debug.Log("Right click");
     }
-    private void RightClick2()
+    private void M_RightClick2()
     {
         Debug.Log("Right click2");
     }
-    private void ShiftRightClick()
+    private void M_ShiftRightClick()
     {
         Debug.Log("Shift right click");
     }
-    private void ExclusiveRightClick()
+    private void M_ExclusiveRightClick()
     {
         Debug.Log("Exclusive right click");
     }

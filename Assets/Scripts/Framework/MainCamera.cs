@@ -28,51 +28,51 @@ public class MainCamera : MonoBehaviour
 
     }
 
-    public MainCameraConfigData configData;
-    private MainCameraStateData stateData;
-    private MainCameraBookkeepData bookkeepData;
+    public MainCameraConfigData m_configData;
+    private MainCameraStateData m_stateData;
+    private MainCameraBookkeepData m_bookkeepData;
 
     // Use this for initialization
     void Start()
     {
         //configData = new MainCameraConfigData();
-        stateData = new MainCameraStateData();
+        m_stateData = new MainCameraStateData();
 
         // Key movement
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.A, MoveLeft);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.D, MoveRight);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.S, MoveDown);
-        InputManager.Instance.RegisterInputCallbackDown(KeyCode.W, MoveUp);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.A, MoveLeft);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.D, MoveRight);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.S, MoveDown);
+        InputManager.Instance.M_RegisterInputCallbackDown(KeyCode.W, MoveUp);
 
         // Mouse rotation
-        InputManager.Instance.RegisterInputCallbackPressed(KeyCode.Mouse1, StartMouseRotate);
-        InputManager.Instance.RegisterInputCallbackReleased(KeyCode.Mouse1, StopMouseRotate);
+        InputManager.Instance.M_RegisterInputCallbackPressed(KeyCode.Mouse1, StartMouseRotate);
+        InputManager.Instance.M_RegisterInputCallbackReleased(KeyCode.Mouse1, StopMouseRotate);
 
         // Mouse movement
-        InputManager.Instance.RegisterInputCallbackPressed(KeyCode.Mouse2, StartMouseMove);
-        InputManager.Instance.RegisterInputCallbackReleased(KeyCode.Mouse2, StopMouseMove);
+        InputManager.Instance.M_RegisterInputCallbackPressed(KeyCode.Mouse2, StartMouseMove);
+        InputManager.Instance.M_RegisterInputCallbackReleased(KeyCode.Mouse2, StopMouseMove);
 
-        InputManager.Instance.RegisterScrollInputCallback(MouseZoom);
+        InputManager.Instance.M_RegisterScrollInputCallback(MouseZoom);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 currentMousePosFactor = InputManager.Instance.GetScreenspaceMousePos();
+        Vector2 currentMousePosFactor = InputManager.Instance.M_GetScreenspaceMousePos();
         // The further the mouse is from its origin, the faster we rotate
-        Vector2 mousePosDiff = currentMousePosFactor - stateData.holdingDownFactor;
+        Vector2 mousePosDiff = currentMousePosFactor - m_stateData.holdingDownFactor;
 
-        if (stateData.holdingDownForMovement)
+        if (m_stateData.holdingDownForMovement)
         {
             Vector3 movement = new Vector3();//new Vector3(mousePosDiff.x, 0, mousePosDiff.y) * m_mouseMoveSpeed * Time.deltaTime;
-            movement += transform.right.normalized * mousePosDiff.x * configData.mouseMoveSpeed * Time.deltaTime;
-            movement += new Vector3(transform.forward.x, 0, transform.forward.z) * mousePosDiff.y * configData.mouseMoveSpeed * Time.deltaTime * -1;
+            movement += transform.right.normalized * mousePosDiff.x * m_configData.mouseMoveSpeed * Time.deltaTime;
+            movement += new Vector3(transform.forward.x, 0, transform.forward.z) * mousePosDiff.y * m_configData.mouseMoveSpeed * Time.deltaTime * -1;
             transform.position += movement;
 
         }
-        else if (stateData.holdingDownForRotation)
+        else if (m_stateData.holdingDownForRotation)
         {
-            Vector2 rotationAngles = configData.mouseRotationSpeed * Time.deltaTime * mousePosDiff;
+            Vector2 rotationAngles = m_configData.mouseRotationSpeed * Time.deltaTime * mousePosDiff;
 
             transform.Rotate(0, rotationAngles.x, 0, Space.World);
             transform.Rotate(rotationAngles.y, 0, 0, Space.Self);
@@ -82,46 +82,46 @@ public class MainCamera : MonoBehaviour
     // TODO fix normalized movement vector. Right now, vertical + horizontal movements are faster together
     private void MoveLeft()
     {
-        transform.position -= transform.right * configData.keyMoveSpeed * Time.deltaTime;
+        transform.position -= transform.right * m_configData.keyMoveSpeed * Time.deltaTime;
     }
     private void MoveRight()
     {
-        transform.position += transform.right * configData.keyMoveSpeed * Time.deltaTime;
+        transform.position += transform.right * m_configData.keyMoveSpeed * Time.deltaTime;
     }
     private void MoveUp()
     {
-        transform.position += new Vector3(transform.forward.x, 0, transform.forward.z) * configData.keyMoveSpeed * Time.deltaTime;
+        transform.position += new Vector3(transform.forward.x, 0, transform.forward.z) * m_configData.keyMoveSpeed * Time.deltaTime;
     }
     private void MoveDown()
     {
-        transform.position += -1 * new Vector3(transform.forward.x, 0, transform.forward.z) * configData.keyMoveSpeed * Time.deltaTime;
+        transform.position += -1 * new Vector3(transform.forward.x, 0, transform.forward.z) * m_configData.keyMoveSpeed * Time.deltaTime;
     }
 
     private void StartMouseMove()
     {
-        stateData.holdingDownFactor = InputManager.Instance.GetScreenspaceMousePos();
-        stateData.holdingDownForMovement = true;
-        stateData.holdingDownForRotation = false;
+        m_stateData.holdingDownFactor = InputManager.Instance.M_GetScreenspaceMousePos();
+        m_stateData.holdingDownForMovement = true;
+        m_stateData.holdingDownForRotation = false;
     }
     private void StopMouseMove()
     {
-        stateData.holdingDownForMovement = false;
+        m_stateData.holdingDownForMovement = false;
     }
     private void StartMouseRotate()
     {
-        stateData.holdingDownFactor = InputManager.Instance.GetScreenspaceMousePos();
-        stateData.holdingDownForRotation = true;
-        stateData.holdingDownForMovement = false;
+        m_stateData.holdingDownFactor = InputManager.Instance.M_GetScreenspaceMousePos();
+        m_stateData.holdingDownForRotation = true;
+        m_stateData.holdingDownForMovement = false;
     }
     private void StopMouseRotate()
     {
-        stateData.holdingDownForRotation = false;
+        m_stateData.holdingDownForRotation = false;
     }
 
     private void MouseZoom(float scrollValue)
     {
         // Static scroll speed. Consider using scrollvalue for more dynamic/fluid zooming?
-        transform.position += Vector3.up * configData.mouseZoomSpeed * Mathf.Sign(scrollValue) * Time.deltaTime;
+        transform.position += Vector3.up * m_configData.mouseZoomSpeed * Mathf.Sign(scrollValue) * Time.deltaTime;
     }
 
 }

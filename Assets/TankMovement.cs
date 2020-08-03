@@ -66,7 +66,8 @@ public class TankMovement : MonoBehaviour
         if (toDest.magnitude > m_configData.stopDistance)
         {
             float angleToDest = transform.forward.GetDiffAngle2D(toDest);
-            transform.Rotate(Vector3.up, angleToDest);
+            float angleToTurn = angleToDest.Sign() * Mathf.Min(angleToDest.Abs(), m_configData.rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up, angleToTurn);
         }
     }
 

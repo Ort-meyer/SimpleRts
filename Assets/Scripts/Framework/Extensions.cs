@@ -46,6 +46,11 @@ public static class FloatExtensions
         }
     }
 
+    public static float Abs(this float number)
+    {
+        return Mathf.Abs(number);
+    }
+
     // Limits the number to absLimit, with sign (i.e. -40 limited to 30 returns -30)
     public static float LimitWithSign(this float number, float absLimit)
     {

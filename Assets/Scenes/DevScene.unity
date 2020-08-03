@@ -1322,7 +1322,7 @@ MonoBehaviour:
     breakAcceleration: 1
     maxMovementSpeed: 1
     stopDistance: 1
-    rotationSpeed: 1
+    rotationSpeed: 200
 --- !u!4 &1562333523
 Transform:
   m_ObjectHideFlags: 0

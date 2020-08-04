@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+public abstract class BaseUnit : MonoBehaviour
 {
 
     // Use this for initialization
@@ -17,8 +17,6 @@ public class BaseUnit : MonoBehaviour
 
     }
 
-    public virtual void M_MoveTo(Vector3 position)
-    {
-        Debug.LogError("BaseUnit.M_MoveTo called: this should be virtual");
-    }
+    public abstract void M_MoveTo(Vector3 position);
+    public abstract void M_AttackOrder(Transform target);
 }

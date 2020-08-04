@@ -21,4 +21,8 @@ public class Player : MonoBehaviour
     {
         m_debugunit.GetComponent<BaseUnit>().M_MoveTo(position);
     }
+    public void M_AttackOrder(Transform target)
+    {
+        m_debugunit.GetComponent<BaseUnit>().M_AttackOrder(target);
+    }
 }

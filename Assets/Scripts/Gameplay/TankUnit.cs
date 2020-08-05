@@ -7,6 +7,7 @@ public class TankUnit : BaseUnit
 
     private TankMovement m_tankMovement;
     private TankTurret m_tankTurret;
+    private CannonWeapon m_cannon;
 
 
     // Use this for initialization
@@ -14,6 +15,7 @@ public class TankUnit : BaseUnit
     {
         m_tankMovement = GetComponent<TankMovement>();
         m_tankTurret = GetComponent<TankTurret>();
+        m_cannon = GetComponent<CannonWeapon>();
     }
 
     // Update is called once per frame
@@ -30,5 +32,6 @@ public class TankUnit : BaseUnit
     public override void M_AttackOrder(Transform target)
     {
         m_tankTurret.M_SetTarget(target);
+        m_cannon.M_SetTarget(target);
     }
 }

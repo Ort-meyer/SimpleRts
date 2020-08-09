@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 300510473}
   - component: {fileID: 300510476}
   m_Layer: 0
-  m_Name: DebugCube
+  m_Name: DebugTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +289,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300510471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.82, y: 0, z: 13.35}
+  m_LocalPosition: {x: 11.45, y: 0, z: 15.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1752051250}
@@ -590,10 +590,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cannonObj: {fileID: 837294036}
-  debugValue: 0
+  m_projectilePrefab: {fileID: 1263439907693766, guid: 1c7c1b163e1e5564b9515bc539537740,
+    type: 2}
   m_configData:
-    elevationSpeed: 10
-    fireSpeed: 0
+    elevationSpeed: 20
+    fireVelocity: 15
+    maxFireCooldown: 2
+    maxElevation: 41
+    minElevation: 22
+    maxTraverse: 11
 --- !u!114 &396469778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,11 +611,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_configData:
-    forwardAcceleration: 1
-    breakAcceleration: 1
-    maxMovementSpeed: 1
-    stopDistance: 1
-    rotationSpeed: 200
+    forwardAcceleration: 2
+    breakAcceleration: 2
+    maxMovementSpeed: 2
+    stopDistance: 2
+    rotationSpeed: 100
 --- !u!4 &396469779
 Transform:
   m_ObjectHideFlags: 0
@@ -752,8 +757,8 @@ Transform:
   m_LocalPosition: {x: 9.66, y: 1.26, z: 8.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1752051250}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510486490
 GameObject:
@@ -1957,11 +1962,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_configData:
-    forwardAcceleration: 1
-    breakAcceleration: 1
-    maxMovementSpeed: 1
-    stopDistance: 1
-    rotationSpeed: 200
+    forwardAcceleration: 0
+    breakAcceleration: 0
+    maxMovementSpeed: 0
+    stopDistance: 0
+    rotationSpeed: 0
 --- !u!4 &1562333523
 Transform:
   m_ObjectHideFlags: 0
@@ -2014,10 +2019,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cannonObj: {fileID: 0}
-  debugValue: 0
+  m_projectilePrefab: {fileID: 0}
   m_configData:
     elevationSpeed: 0
-    fireSpeed: 0
+    fireVelocity: 0
+    maxFireCooldown: 0
+    maxElevation: 0
+    minElevation: 0
+    maxTraverse: 0
 --- !u!1 &1676543979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,10 +2314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_configData:
-    keyMoveSpeed: 0
-    mouseMoveSpeed: 0
-    mouseRotationSpeed: 0
-    mouseZoomSpeed: 0
+    keyMoveSpeed: 15
+    mouseMoveSpeed: 33
+    mouseRotationSpeed: 88
+    mouseZoomSpeed: 15
 --- !u!1 &1735331009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,6 +2375,7 @@ Transform:
   m_Children:
   - {fileID: 300510472}
   - {fileID: 1128220461}
+  - {fileID: 494890323}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

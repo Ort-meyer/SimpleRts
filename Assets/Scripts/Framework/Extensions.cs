@@ -30,6 +30,10 @@ public static class Vector3Extensions
         }
         return diffAngle;
     }
+    public static Vector3 SetX(this Vector3 vec3, float x)
+    {
+        return new Vector3(x, vec3.y, vec3.z);
+    }
 }
 
 public static class FloatExtensions
@@ -98,5 +102,37 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
             return instance;
         }
+    }
+}
+
+public static class Helpers
+{
+    // Taken from https://www.gamedev.net/forums/topic/107074-calculating-projectile-launch-angle-to-hit-a-target/?page=3
+    // Returns angle necessary to hit the target with the given parameters
+    public static float GetAngleToHit(float distanceToTarget, float heightDifference, float speed)
+    {
+        // Broken up for debugging purposes. Keeping it around for readability
+        float u = speed;
+        float us = Mathf.Pow(u, 2);
+        float x = distanceToTarget;
+        float xs = Mathf.Pow(x, 2);
+        float y = heightDifference;
+        float g = 9.81f;
+
+        float xsus = xs / us;
+        float gxsus = g * xsus;
+        float part0 = y + 0.5f * gxsus;
+        float part0point5 = us - 2 * g * part0;
+        float part1 = u - Mathf.Sqrt(part0point5);
+        float part2 = g * (x / u);
+
+        float angle = Mathf.Atan(part1 / part2);
+        if(float.IsNaN(angle)) // Out of range. This is kinda ugly but should work for most cases
+        {
+            return Mathf.Sign(heightDifference) * 45;
+        }
+        return angle * Mathf.Rad2Deg;
+
+
     }
 }

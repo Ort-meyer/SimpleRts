@@ -1022,10 +1022,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_configData:
-    keyMoveSpeed: 0
-    mouseMoveSpeed: 0
-    mouseRotationSpeed: 0
-    mouseZoomSpeed: 0
+    keyMoveSpeed: 22
+    mouseMoveSpeed: 33
+    mouseRotationSpeed: 222
+    mouseZoomSpeed: 33
 --- !u!1 &1752051249
 GameObject:
   m_ObjectHideFlags: 0

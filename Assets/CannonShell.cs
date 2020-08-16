@@ -8,17 +8,25 @@ public class CannonShell : MonoBehaviour
     [Serializable]
     public class CannonShellStateData
     {
-        public GameObject firingUnitObject;
         public Transform target;
         public float speed;
     }
 
-    private CannonShellStateData m_stateData;
+    [Serializable]
+    public class CannonShellBookkeepingData
+    {
+        public float startRangeToTarget;
+        public GameObject firingUnitObject;
+    }
 
+    private CannonShellStateData m_stateData;
+    private CannonShellBookkeepingData m_bookData;
+
+    // Setters and getters
     public GameObject m_firingUnitObject
     {
-        get { return m_stateData.firingUnitObject; }
-        set { m_stateData.firingUnitObject = value; }
+        get { return m_bookData.firingUnitObject; }
+        set { m_bookData.firingUnitObject = value; }
     }
 
     // Use this for initialization
@@ -39,6 +47,7 @@ public class CannonShell : MonoBehaviour
     public void M_Init()
     {
         m_stateData = new CannonShellStateData();
+        m_bookData = new CannonShellBookkeepingData();
     }
 
     public void M_FireAtTarget(float fireSpeed, Transform target)
@@ -53,7 +62,7 @@ public class CannonShell : MonoBehaviour
         if (unitHit)
         {
             GameObject firingUnitObject = unitHit.gameObject;
-            if (firingUnitObject == m_stateData.firingUnitObject)
+            if (firingUnitObject == m_bookData.firingUnitObject)
             {
                 return;
             }

@@ -15,7 +15,6 @@ public class CannonShell : MonoBehaviour
     [Serializable]
     public class CannonShellBookkeepingData
     {
-        public float startRangeToTarget;
         public GameObject firingUnitObject;
     }
 
@@ -32,16 +31,13 @@ public class CannonShell : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //m_stateData = new CannonWeaponStateData();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 toTarget = m_stateData.target.position - transform.position;
-        Vector3 movement = m_stateData.speed * Time.deltaTime * toTarget.normalized;
-        transform.position += movement;
-        transform.forward = movement.normalized;
+
     }
 
     public void M_Init()
@@ -70,10 +66,7 @@ public class CannonShell : MonoBehaviour
         //M_SpawnImpactEffect();
         Destroy(this.gameObject);
         // Possibly helpfull code from some example somewhere
-        //foreach (ContactPoint contact in collision.contacts)
-        //{
-        //    Debug.DrawRay(contact.point, contact.normal, Color.white);
-        //}
+
 
     }
 }

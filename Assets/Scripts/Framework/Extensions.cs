@@ -34,6 +34,10 @@ public static class Vector3Extensions
     {
         return new Vector3(x, vec3.y, vec3.z);
     }
+    public static Vector3 ZeroY(this Vector3 vec3)
+    {
+        return new Vector3(vec3.x, 0, vec3.z);
+    }
 }
 
 public static class FloatExtensions

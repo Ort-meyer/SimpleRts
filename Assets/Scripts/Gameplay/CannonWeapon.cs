@@ -53,28 +53,16 @@ public class CannonWeapon : MonoBehaviour
         if (m_stateData.target)
         {
             Vector3 toTarget = m_stateData.target.position - m_cannonObj.transform.position;
-            // Where the cannon currently points relative toTarget
-            //Vector3 toTargetCurrent = toTarget.normalized;
-            //toTargetCurrent.y = m_cannonObj.transform.forward.y;
-            //float currentRotationAngle = Vector3.SignedAngle(toTargetCurrent, toTarget, m_cannonObj.transform.right);
-            float targetRotationAngle = -1 * Helpers.GetAngleToHit(toTarget.magnitude, toTarget.y - m_cannonObj.transform.position.y, m_configData.fireVelocity);
-            //float rotationAngle = targetRotationAngle - currentRotationAngle;
-            // Limit elevation. This can be improved: now it will be one frame above/below max/min
-            //if(currentRotationAngle < m_configData.maxElevation && currentRotationAngle > m_configData.minElevation)
-            //{
-            //    rotationAngle = rotationAngle.Sign() * Mathf.Min(rotationAngle.Abs(), m_configData.elevationSpeed * Time.deltaTime);
-            //    m_cannonObj.transform.Rotate(new Vector3(rotationAngle, 0, 0), Space.Self);
-            //}
+            float targetRotationAngle = Helpers.GetAngleToHit(toTarget.magnitude, toTarget.y, m_configData.fireVelocity); // Should be difference in y?
 
-            //Vector3 toTarget = m_stateData.target.position - m_cannonObj.transform.position;
-            // Where the cannon should be pointing
-            Vector3 firingDirection = Quaternion.AngleAxis(targetRotationAngle, new Vector3(1, 0, 0)) * toTarget;
+            Transform cannon = m_cannonObj.transform;
+            Vector3 oldUp = cannon.up; // This looks silly with high traverse. Should have same default up as parent
 
-            Vector3 newDirection = Vector3.RotateTowards(m_cannonObj.transform.forward, firingDirection, m_configData.elevationSpeed * Time.deltaTime, 0.0f);
+            cannon.rotation = Quaternion.LookRotation(toTarget.ZeroY().normalized, Vector3.up);
+            cannon.Rotate(new Vector3(1, 0, 0), -1 * targetRotationAngle, Space.Self);
+            cannon.rotation = Quaternion.LookRotation(cannon.forward, oldUp);
 
-            // Set perfect rotation
-            m_cannonObj.transform.rotation = Quaternion.LookRotation(newDirection);
-            // Correct rotation with constraints
+            //Correct rotation with constraints
             Vector3 eulerAngles = m_cannonObj.transform.localRotation.eulerAngles;
             float x = eulerAngles.x;
             x = (x > 180) ? x - 360 : x;
@@ -121,7 +109,7 @@ public class CannonWeapon : MonoBehaviour
         //float spreadx = Random.Range(-m_weaponSpread, m_weaponSpread);
         //float spready = Random.Range(-m_weaponSpread, m_weaponSpread);
         //newProjectile.transform.Rotate(spreadx, spready, 0, Space.Self);
-        //newProjectile.GetComponent<Rigidbody>().velocity = m_cannonObj.transform.forward.normalized * m_configData.fireVelocity;
+        newProjectile.GetComponent<Rigidbody>().velocity = m_cannonObj.transform.forward.normalized * m_configData.fireVelocity;
         // Add firing unit to the projectile so it doesnt hit itself
         newProjectile.M_Init();
         newProjectile.m_firingUnitObject = this.gameObject;

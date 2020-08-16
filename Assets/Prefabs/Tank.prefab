@@ -330,7 +330,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401579034597698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.619, y: 0.68, z: 4.35}
+  m_LocalPosition: {x: 6.619, y: 0.68, z: 7.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4378409396713936}
@@ -708,9 +708,10 @@ MonoBehaviour:
   m_cannonObj: {fileID: 1794418422940236}
   m_projectilePrefab: {fileID: 1263439907693766, guid: 1c7c1b163e1e5564b9515bc539537740,
     type: 2}
+  DEBUGtest: {fileID: 0}
   m_configData:
     elevationSpeed: 5
-    fireVelocity: 5
+    fireVelocity: 40
     maxFireCooldown: 2
     maxElevation: 20
     minElevation: 10

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CannonShell : MonoBehaviour
 {
+    public GameObject m_impactEffectPrefab;
+
     [Serializable]
     public class CannonShellStateData
     {
@@ -63,10 +65,31 @@ public class CannonShell : MonoBehaviour
                 return;
             }
         }
-        //M_SpawnImpactEffect();
+        M_SpawnImpactEffect();
         Destroy(this.gameObject);
         // Possibly helpfull code from some example somewhere
 
 
+    }
+
+    private void M_SpawnImpactEffect()
+    {
+        GameObject newEffect = Instantiate(m_impactEffectPrefab);
+        newEffect.transform.parent = ParticleManager.Instance.transform;
+        newEffect.transform.position = transform.position;
+        newEffect.SetActive(true);
+        ParticleSystem ps = newEffect.GetComponent<ParticleSystem>();
+
+        if (ps != null)
+        {
+            var main = ps.main;
+            if (main.loop)
+            {
+                ps.gameObject.AddComponent<CFX_AutoStopLoopedEffect>();
+                ps.gameObject.AddComponent<CFX_AutoDestructShuriken>();
+            }
+        }
+
+        ParticleManager.Instance.M_AddParticle(newEffect);
     }
 }

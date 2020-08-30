@@ -5,7 +5,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public GameObject m_debugunit;
+    public GameObject[] m_debugunits;
 
     [Serializable]
     public class PlayerConfigData
@@ -38,7 +38,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         m_stateData = new PlayerStateData();
-        m_stateData.units.Add(m_debugunit.GetInstanceID(), m_debugunit.GetComponent<BaseUnit>());
+        foreach (GameObject obj in m_debugunits)
+        {
+            m_stateData.units.Add(obj.GetInstanceID(), obj.GetComponent<BaseUnit>());
+        }
     }
 
     // Update is called once per frame

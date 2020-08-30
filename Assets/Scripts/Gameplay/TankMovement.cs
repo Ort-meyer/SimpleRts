@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankMovement : MonoBehaviour
 {
@@ -45,35 +46,36 @@ public class TankMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 toDest = m_stateData.destination - transform.position;
-        toDest.y = 0;
-        // Accelerate if we haven't reached stop distance from destination
-        if (toDest.magnitude > m_configData.stopDistance)
-        {
-            m_stateData.movementSpeed += m_configData.forwardAcceleration * Time.deltaTime;
-            m_stateData.movementSpeed = m_stateData.movementSpeed.LimitWithSign(m_configData.maxMovementSpeed);
+        //Vector3 toDest = m_stateData.destination - transform.position;
+        //toDest.y = 0;
+        //// Accelerate if we haven't reached stop distance from destination
+        //if (toDest.magnitude > m_configData.stopDistance)
+        //{
+        //    m_stateData.movementSpeed += m_configData.forwardAcceleration * Time.deltaTime;
+        //    m_stateData.movementSpeed = m_stateData.movementSpeed.LimitWithSign(m_configData.maxMovementSpeed);
 
-        }
-        else // Break
-        {
-            m_stateData.movementSpeed -= m_configData.breakAcceleration* Time.deltaTime;
-            m_stateData.movementSpeed = m_stateData.movementSpeed.LimitWithSign(0);
+        //}
+        //else // Break
+        //{
+        //    m_stateData.movementSpeed -= m_configData.breakAcceleration* Time.deltaTime;
+        //    m_stateData.movementSpeed = m_stateData.movementSpeed.LimitWithSign(0);
 
-        }
-        transform.position += transform.forward.normalized * m_stateData.movementSpeed * Time.deltaTime;
+        //}
+        //transform.position += transform.forward.normalized * m_stateData.movementSpeed * Time.deltaTime;
 
-        // Rotate towards destination
-        if (toDest.magnitude > m_configData.stopDistance)
-        {
-            float angleToDest = transform.forward.GetDiffAngle2D(toDest);
-            float angleToTurn = angleToDest.Sign() * Mathf.Min(angleToDest.Abs(), m_configData.rotationSpeed * Time.deltaTime);
-            transform.Rotate(Vector3.up, angleToTurn);
-        }
+        //// Rotate towards destination
+        //if (toDest.magnitude > m_configData.stopDistance)
+        //{
+        //    float angleToDest = transform.forward.GetDiffAngle2D(toDest);
+        //    float angleToTurn = angleToDest.Sign() * Mathf.Min(angleToDest.Abs(), m_configData.rotationSpeed * Time.deltaTime);
+        //    transform.Rotate(Vector3.up, angleToTurn);
+        //}
     }
 
     public void M_StartMoveTo(Vector3 destination)
     {
         m_stateData.destination = destination;
+        GetComponent<NavMeshAgent>().SetDestination(destination);
     }
 
     public void M_StopMoving()

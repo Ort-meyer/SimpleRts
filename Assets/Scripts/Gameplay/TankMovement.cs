@@ -75,4 +75,9 @@ public class TankMovement : MonoBehaviour
     {
         m_stateData.destination = destination;
     }
+
+    public void M_StopMoving()
+    {
+        m_stateData.destination = transform.position; // TODO improve. This is stupid ugly way of stopping
+    }
 }

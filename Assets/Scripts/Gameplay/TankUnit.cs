@@ -31,6 +31,7 @@ public class TankUnit : BaseUnit
 
     public override void M_AttackOrder(Transform target)
     {
+        m_tankMovement.M_StopMoving();
         m_tankTurret.M_SetTarget(target);
         m_cannon.M_SetTarget(target);
     }

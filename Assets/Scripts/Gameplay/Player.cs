@@ -38,9 +38,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         m_stateData = new PlayerStateData();
-        foreach (GameObject obj in m_debugunits)
+        //foreach (GameObject obj in m_debugunits)
+        //{
+        //    m_stateData.units.Add(obj.GetInstanceID(), obj.GetComponent<BaseUnit>());
+        //}
+        foreach(BaseUnit unit in FindObjectsOfType<BaseUnit>())
         {
-            m_stateData.units.Add(obj.GetInstanceID(), obj.GetComponent<BaseUnit>());
+            if(unit.m_configData.faction == m_configData.faction)
+            {
+                m_stateData.units.Add(unit.GetInstanceID(), unit);
+            }
         }
     }
 
@@ -86,5 +93,11 @@ public class Player : MonoBehaviour
     public void M_AddUnit(BaseUnit unit)
     {
         m_stateData.units.Add(unit.GetInstanceID(), unit); // Will fail in case of duplicate. TODO handle?
+    }
+
+    public void M_RemoveUnit(int instanceId)
+    {
+        m_stateData.units.Remove(instanceId);
+        m_stateData.selectedUnits.Remove(instanceId);
     }
 }

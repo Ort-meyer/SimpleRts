@@ -8,6 +8,12 @@ public class CannonShell : MonoBehaviour
     public GameObject m_impactEffectPrefab;
 
     [Serializable]
+    public class CannonShellConfigData
+    {
+        public float damage;
+    }
+
+    [Serializable]
     public class CannonShellStateData
     {
         public Transform target;
@@ -20,6 +26,7 @@ public class CannonShell : MonoBehaviour
         public GameObject firingUnitObject;
     }
 
+    public CannonShellConfigData m_configData;
     private CannonShellStateData m_stateData;
     private CannonShellBookkeepingData m_bookData;
 
@@ -64,6 +71,7 @@ public class CannonShell : MonoBehaviour
             {
                 return;
             }
+            unitHit.M_InflictDamage(m_configData.damage);
         }
         M_SpawnImpactEffect();
         Destroy(this.gameObject);

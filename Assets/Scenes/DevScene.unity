@@ -850,6 +850,11 @@ Prefab:
       propertyPath: m_configData.faction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114007870454314680, guid: a2591c7aa86ef9447b8a438b7439ef20,
+        type: 2}
+      propertyPath: m_tankConfigData.maxHp
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
   m_IsPrefabParent: 0
@@ -1539,6 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd6cb57a152d7941b8fdd8e410b390c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_players: []
 --- !u!1 &1547272119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1849,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1836602386}
+  - component: {fileID: 1836602387}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1863,6 +1870,18 @@ Transform:
   m_Father: {fileID: 584600953}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1836602387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836602385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd6cb57a152d7941b8fdd8e410b390c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_players: []
 --- !u!1 &1851482069
 GameObject:
   m_ObjectHideFlags: 0

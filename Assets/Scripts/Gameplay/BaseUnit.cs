@@ -34,4 +34,5 @@ public abstract class BaseUnit : MonoBehaviour
 
     public abstract void M_MoveTo(Vector3 position);
     public abstract void M_AttackOrder(Transform target);
+    public abstract void M_InflictDamage(float damage);
 }

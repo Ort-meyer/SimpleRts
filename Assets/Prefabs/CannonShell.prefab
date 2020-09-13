@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_impactEffectPrefab: {fileID: 100006, guid: 7c442b9b6852b8a4f93306f3d154d471, type: 2}
-  m_configData:
-    damage: 1
+  m_damage: 1
+  m_firingUnitObject: {fileID: 0}
 --- !u!114 &114665683019688084
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -709,8 +709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e6659a5a0c2c740b56cba73371cbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_configData:
-    faction: 1
+  m_faction: 1
+  m_maxHp: 10
 --- !u!114 &114114067059807626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -725,13 +725,12 @@ MonoBehaviour:
   m_cannonObj: {fileID: 1794418422940236}
   m_projectilePrefab: {fileID: 1263439907693766, guid: 1c7c1b163e1e5564b9515bc539537740,
     type: 2}
-  m_configData:
-    elevationSpeed: 5
-    fireVelocity: 40
-    maxFireCooldown: 2
-    maxElevation: 20
-    minElevation: 10
-    maxTraverse: 5
+  m_elevationSpeed: 10
+  m_fireVelocity: 20
+  m_maxFireCooldown: 5
+  m_maxElevation: 30
+  m_minElevation: 10
+  m_maxTraverse: 5
 --- !u!114 &114552997117684548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -743,12 +742,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5422668673f0aab4cb3d7da945a8d0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_configData:
-    forwardAcceleration: 5
-    breakAcceleration: 5
-    maxMovementSpeed: 5
-    stopDistance: 1
-    rotationSpeed: 100
+  m_forwardAcceleration: 0
+  m_breakAcceleration: 0
+  m_maxMovementSpeed: 0
+  m_stopDistance: 0
+  m_rotationSpeed: 0
+  m_movementSpeed: 0
+  m_destination: {x: 0, y: 0, z: 0}
 --- !u!114 &114774843467330318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -761,8 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_turretObj: {fileID: 1896799260186018}
-  m_configData:
-    rotationSpeed: 100
+  m_rotationSpeed: 100
 --- !u!136 &136020428790804558
 CapsuleCollider:
   m_ObjectHideFlags: 1

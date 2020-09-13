@@ -7,35 +7,13 @@ public class CannonShell : MonoBehaviour
 {
     public GameObject m_impactEffectPrefab;
 
-    [Serializable]
-    public class CannonShellConfigData
-    {
-        public float damage;
-    }
+    // Config
+    public float m_damage;
 
-    [Serializable]
-    public class CannonShellStateData
-    {
-        public Transform target;
-        public float speed;
-    }
-
-    [Serializable]
-    public class CannonShellBookkeepingData
-    {
-        public GameObject firingUnitObject;
-    }
-
-    public CannonShellConfigData m_configData;
-    private CannonShellStateData m_stateData;
-    private CannonShellBookkeepingData m_bookData;
-
-    // Setters and getters
-    public GameObject m_firingUnitObject
-    {
-        get { return m_bookData.firingUnitObject; }
-        set { m_bookData.firingUnitObject = value; }
-    }
+    // State
+    private Transform m_target;
+    private float m_speed;
+    public GameObject m_firingUnitObject;
 
     // Use this for initialization
     void Start()
@@ -51,14 +29,13 @@ public class CannonShell : MonoBehaviour
 
     public void M_Init()
     {
-        m_stateData = new CannonShellStateData();
-        m_bookData = new CannonShellBookkeepingData();
+
     }
 
     public void M_FireAtTarget(float fireSpeed, Transform target)
     {
-        m_stateData.target = target;
-        m_stateData.speed = fireSpeed;
+        m_target = target;
+        m_speed = fireSpeed;
     }
 
     void OnTriggerEnter(Collider other)
@@ -67,11 +44,11 @@ public class CannonShell : MonoBehaviour
         if (unitHit)
         {
             GameObject firingUnitObject = unitHit.gameObject;
-            if (firingUnitObject == m_bookData.firingUnitObject)
+            if (firingUnitObject == m_firingUnitObject)
             {
                 return;
             }
-            unitHit.M_InflictDamage(m_configData.damage);
+            unitHit.M_InflictDamage(m_damage);
         }
         M_SpawnImpactEffect();
         Destroy(this.gameObject);

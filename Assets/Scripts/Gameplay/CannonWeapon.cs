@@ -2,58 +2,47 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
 
 public class CannonWeapon : MonoBehaviour
 {
     public GameObject m_cannonObj;
     public GameObject m_projectilePrefab;
 
-    [Serializable]
-    public class CannonWeaponConfigData
-    {
-        public float elevationSpeed;
-        public float fireVelocity; // Should this be in the projectile? Have here for now
-        public float maxFireCooldown;
-        // Around local x
-        public float maxElevation;
-        public float minElevation;
-        // Around local y
-        public float maxTraverse;
-    }
+    // Configurable
+    public float m_elevationSpeed;
+    public float m_fireVelocity; // Should this be in the projectile? Have here for now
+    public float m_maxFireCooldown;
+    // Around local x
+    public float m_maxElevation;
+    public float m_minElevation;
+    // Around local y
+    public float m_maxTraverse;
 
-    [Serializable]
-    public class CannonWeaponStateData
-    {
-        public Transform target;
-        public float currentFireCooldown;
-    }
+    // State
+    private Transform m_target;
+    private float m_currentFireCooldown;
+    
 
-    public class CannonWeaponBookkeepData
-    {
 
-    }
-
-    public CannonWeaponConfigData m_configData;
-    private CannonWeaponStateData m_stateData;
-    private CannonWeaponBookkeepData m_bookkeepData;
 
     // Use this for initialization
     void Start()
     {
-        m_stateData = new CannonWeaponStateData();
-        m_bookkeepData = new CannonWeaponBookkeepData();
 
-        m_stateData.currentFireCooldown = m_configData.maxFireCooldown;
+        m_currentFireCooldown = m_maxFireCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_stateData.currentFireCooldown -= Time.deltaTime;
-        if (m_stateData.target)
+        m_currentFireCooldown -= Time.deltaTime;
+        if (m_target)
         {
-            Vector3 toTarget = m_stateData.target.position - m_cannonObj.transform.position;
-            float targetRotationAngle = Helpers.GetAngleToHit(toTarget.magnitude, toTarget.y, m_configData.fireVelocity); // Should be difference in y?
+            Vector3 toTarget = m_target.position - m_cannonObj.transform.position;
+            float targetRotationAngle = Helpers.GetAngleToHit(toTarget.magnitude, toTarget.y, m_fireVelocity); // Should be difference in y?
 
             Transform cannon = m_cannonObj.transform;
             Vector3 oldUp = cannon.up; // This looks silly with high traverse. Should have same default up as parent
@@ -67,39 +56,39 @@ public class CannonWeapon : MonoBehaviour
             float x = eulerAngles.x;
             x = (x > 180) ? x - 360 : x;
             x *= -1;
-            if (x > m_configData.maxElevation)
+            if (x > m_maxElevation)
             {
-                x = m_configData.maxElevation;
+                x = m_maxElevation;
             }
-            if (x < -1 * m_configData.minElevation)
+            if (x < -1 * m_minElevation)
             {
-                x = -1 * m_configData.minElevation;
+                x = -1 * m_minElevation;
             }
             float y = eulerAngles.y;
             y = (y > 180) ? y - 360 : y;
-            if (y > m_configData.maxTraverse)
+            if (y > m_maxTraverse)
             {
-                y = m_configData.maxTraverse;
+                y = m_maxTraverse;
             }
-            if (y < -1 * m_configData.maxTraverse)
+            if (y < -1 * m_maxTraverse)
             {
-                y = -1 * m_configData.maxTraverse;
+                y = -1 * m_maxTraverse;
             }
 
             eulerAngles = new Vector3(-1 * x, y, 0);
             m_cannonObj.transform.localRotation = Quaternion.Euler(eulerAngles);
 
-            if (m_stateData.currentFireCooldown <= 0)
+            if (m_currentFireCooldown <= 0)
             {
                 M_FireWeapon();
-                m_stateData.currentFireCooldown = m_configData.maxFireCooldown;
+                m_currentFireCooldown = m_maxFireCooldown;
             }
         }
     }
 
     public void M_SetTarget(Transform target)
     {
-        m_stateData.target = target;
+        m_target = target;
     }
 
     private void M_FireWeapon()
@@ -109,14 +98,22 @@ public class CannonWeapon : MonoBehaviour
         //float spreadx = Random.Range(-m_weaponSpread, m_weaponSpread);
         //float spready = Random.Range(-m_weaponSpread, m_weaponSpread);
         //newProjectile.transform.Rotate(spreadx, spready, 0, Space.Self);
-        newProjectile.GetComponent<Rigidbody>().velocity = m_cannonObj.transform.forward.normalized * m_configData.fireVelocity;
+        newProjectile.GetComponent<Rigidbody>().velocity = m_cannonObj.transform.forward.normalized * m_fireVelocity;
         // Add firing unit to the projectile so it doesnt hit itself
         newProjectile.M_Init();
-        newProjectile.m_firingUnitObject = this.gameObject;
-        newProjectile.M_FireAtTarget(m_configData.fireVelocity, m_stateData.target);
+        newProjectile.m_firingUnitObject = gameObject;
+        newProjectile.M_FireAtTarget(m_fireVelocity, m_target);
 
         //firingUnit.M_AddRecoil(newProjectile.transform.forward * m_recoil);
         //m_readyToFire = false;
         //m_currentCooldown = m_maxCooldown;
+    }
+
+    public string M_GetSavedComponent()
+    {
+        JObject savedComponent = new JObject();
+        //savedComponent.Add("StateData", JsonConvert.SerializeObject(()));
+
+        return savedComponent.ToString();
     }
 }

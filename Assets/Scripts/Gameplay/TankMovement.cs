@@ -3,44 +3,31 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class TankMovement : MonoBehaviour
 {
-    [Serializable]
-    public class TankMovementConfigData
-    {
-        // Forward movement
-        public float forwardAcceleration;
-        public float breakAcceleration;
-        public float maxMovementSpeed;
-        public float stopDistance;
+    // Configurable
+    // Forward movement
+    public float m_forwardAcceleration;
+    public float m_breakAcceleration;
+    public float m_maxMovementSpeed;
+    public float m_stopDistance;
+    // Rotation
+    public float m_rotationSpeed;
 
-        // Rotation
-        public float rotationSpeed;
-    }
+    // State
+    public float m_movementSpeed;
+    //public float currentRotation;
 
-    [Serializable]
-    public class TankMovementStateData
-    {
-        public float movementSpeed;
-        //public float currentRotation;
+    public Vector3 m_destination;
 
-        public Vector3 destination;
-    }
-
-    public class TankMovementBookkeepData
-    {
-
-    }
-
-    public TankMovementConfigData m_configData;
-    private TankMovementStateData m_stateData;
-
+    
     // Use this for initialization
     void Start()
     {
-        m_stateData = new TankMovementStateData();
-        m_stateData.destination = transform.position;
+        m_destination = transform.position;
     }
 
     // Update is called once per frame
@@ -74,12 +61,25 @@ public class TankMovement : MonoBehaviour
 
     public void M_StartMoveTo(Vector3 destination)
     {
-        m_stateData.destination = destination;
+        m_destination = destination;
         GetComponent<NavMeshAgent>().SetDestination(destination);
     }
 
     public void M_StopMoving()
     {
-        m_stateData.destination = transform.position; // TODO improve. This is stupid ugly way of stopping
+        m_destination = transform.position; // TODO improve. This is stupid ugly way of stopping
+    }
+
+    public string M_GetSavedComponent()
+    {
+        JObject savedComponent = new JObject();
+        //savedComponent.Add("StateData", JsonConvert.SerializeObject(()));
+
+        return savedComponent.ToString();
+    }
+
+    public void M_CreateFromSavedComponent(JObject component)
+    {
+        //m_stateData = component["stateData"];
     }
 }

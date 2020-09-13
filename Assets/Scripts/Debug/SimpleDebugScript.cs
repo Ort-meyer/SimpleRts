@@ -5,6 +5,33 @@ using UnityEngine;
 public class SimpleDebugScript : MonoBehaviour
 {
 
+    public GameObject unitToSave;
+
+    //abstract class Saveable
+    //{
+    //    public abstract void M_Save();
+    //    public abstract GameObject M_Load();
+    //}
+
+    //class TestClass:Saveable
+    //{
+    //    public TestClass()
+    //    {
+
+    //    }
+
+    //    public override void M_Save()
+    //    {
+
+    //    }
+
+    //    public override GameObject M_Load()
+    //    {
+
+    //    }
+    //}
+
+
     // Use this for initialization
     void Start()
     {
@@ -17,7 +44,11 @@ public class SimpleDebugScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyUp(KeyCode.H))
+        {
+            string jsonStr = unitToSave.GetComponent<TankUnit>().M_GetSavedUnit().ToString();
+            Debug.Log(jsonStr);
+        }
     }
 
     private void M_RightClick()

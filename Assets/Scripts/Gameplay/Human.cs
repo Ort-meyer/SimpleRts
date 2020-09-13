@@ -6,35 +6,15 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    [Serializable]
-    public class HumanConfigData
-    {
-        public Texture2D selectionTexture;
-        public Texture2D selectionEdgeTexture;
-        public float edgeThickness;
-    }
+    // Config
+    public Texture2D m_selectionTexture;
+    public Texture2D m_selectionEdgeTexture;
+    public float m_edgeThickness;
 
-    [Serializable]
-    public class HumanStateData
-    {
-        public bool isDragging = false;
-    }
-
-    [Serializable]
-    public class HumanBookkeepData
-    {
-        public Vector3 mouseDownPoint;
-        Dictionary<int, BaseUnit> hitUnits;
-
-        public HumanBookkeepData()
-        {
-            hitUnits = new Dictionary<int, BaseUnit>();
-        }
-    }
-
-    public HumanConfigData m_configData;
-    private HumanStateData m_stateData;
-    private HumanBookkeepData m_bookData;
+    // State
+    private bool m_isDragging = false;
+    private Vector3 m_mouseDownPoint;
+    private Dictionary<int, BaseUnit> m_hitUnits = new Dictionary<int, BaseUnit>();
 
 
     private Player m_player;
@@ -45,10 +25,6 @@ public class Human : MonoBehaviour
         InputManager.Instance.M_RegisterInputCallbackReleased(KeyCode.Mouse1, KeyModifier.None, M_MoveOrAttackOrder);
         InputManager.Instance.M_RegisterInputCallbackReleased(KeyCode.Mouse0, KeyModifier.None, M_SelectUnits);
         InputManager.Instance.M_RegisterInputCallbackPressed(KeyCode.Mouse0, M_StartDragging);
-        
-
-        m_stateData = new HumanStateData();
-        m_bookData = new HumanBookkeepData();
     }
 
     // Update is called once per frame
@@ -65,7 +41,7 @@ public class Human : MonoBehaviour
             GameObject closestObjHit = hits[0].transform.gameObject;
             BaseUnit hitUnit = closestObjHit.GetComponentInParent<BaseUnit>();
             // Hit other player unit (all other players are enemies for now)
-            if (hitUnit && hitUnit.m_configData.faction != m_player.m_configData.faction)
+            if (hitUnit && hitUnit.m_faction != m_player.m_faction)
             {
                 m_player.M_AttackOrder(closestObjHit.transform);
             }
@@ -90,7 +66,7 @@ public class Human : MonoBehaviour
                 BaseUnit hitUnit = hit.transform.GetComponentInParent<BaseUnit>();
                 if (hitUnit)
                 {
-                    if(hitUnit.m_configData.faction == m_player.m_configData.faction)
+                    if(hitUnit.m_faction == m_player.m_faction)
                     {
                         hitUnits[hitUnit.GetInstanceID()] = hitUnit;
                     }
@@ -98,7 +74,7 @@ public class Human : MonoBehaviour
             }
         }
         // Selection box
-        if (m_stateData.isDragging)
+        if (m_isDragging)
         {
             foreach (var kvp in m_player.M_GetAllUnits())
             {
@@ -108,22 +84,22 @@ public class Human : MonoBehaviour
                 }
             }
         }
-        m_stateData.isDragging = false;
+        m_isDragging = false;
         m_player.M_SelectUnits(hitUnits.Values.ToList()); // Can be improved
     }
 
     private void M_StartDragging()
     {
-        m_stateData.isDragging = true;
-        m_bookData.mouseDownPoint = Input.mousePosition;
+        m_isDragging = true;
+        m_mouseDownPoint = Input.mousePosition;
     }
 
     /////// Selection box stuff
     private void OnGUI()
     {
-        if (m_stateData.isDragging)
+        if (m_isDragging)
         {
-            Rect rect = GetScreenRect(m_bookData.mouseDownPoint, Input.mousePosition);
+            Rect rect = GetScreenRect(m_mouseDownPoint, Input.mousePosition);
             DrawSelectionBox(rect);
         }
     }
@@ -143,15 +119,15 @@ public class Human : MonoBehaviour
     private void DrawSelectionBox(Rect rect)
     {
         // Draw the inner box
-        GUI.DrawTexture(rect, m_configData.selectionTexture);
+        GUI.DrawTexture(rect, m_selectionTexture);
         // Draw the edges
-        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, rect.width, m_configData.edgeThickness), m_configData.selectionEdgeTexture);
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, rect.width, m_edgeThickness), m_selectionEdgeTexture);
         // Left
-        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, m_configData.edgeThickness, rect.height), m_configData.selectionEdgeTexture);
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, m_edgeThickness, rect.height), m_selectionEdgeTexture);
         // Right
-        GUI.DrawTexture(new Rect(rect.xMax - m_configData.edgeThickness, rect.yMin, m_configData.edgeThickness, rect.height), m_configData.selectionEdgeTexture);
+        GUI.DrawTexture(new Rect(rect.xMax - m_edgeThickness, rect.yMin, m_edgeThickness, rect.height), m_selectionEdgeTexture);
         // Bottom
-        GUI.DrawTexture(new Rect(rect.xMin, rect.yMax - m_configData.edgeThickness, rect.width, m_configData.edgeThickness), m_configData.selectionEdgeTexture);
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMax - m_edgeThickness, rect.width, m_edgeThickness), m_selectionEdgeTexture);
     }
 
     private Bounds GetViewportBounds(Vector3 screenPosition1, Vector3 screenPosition2)
@@ -170,7 +146,7 @@ public class Human : MonoBehaviour
 
     public bool IsWithinSelectionBounds(GameObject gameObject)
     {
-        var viewportBounds = GetViewportBounds(m_bookData.mouseDownPoint, Input.mousePosition);
+        var viewportBounds = GetViewportBounds(m_mouseDownPoint, Input.mousePosition);
         return viewportBounds.Contains(Camera.main.WorldToViewportPoint(gameObject.transform.position));
     }
 

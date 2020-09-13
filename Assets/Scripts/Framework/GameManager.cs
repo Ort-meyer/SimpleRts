@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (Player player in m_players)
         {
-            if (player.m_configData.faction == faction)
+            if (player.m_faction == faction)
             {
                 return player;
             }

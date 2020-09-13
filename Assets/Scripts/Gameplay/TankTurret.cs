@@ -2,52 +2,45 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class TankTurret : MonoBehaviour
 {
+    // Configurable
     public GameObject m_turretObj;
-
-    [Serializable]
-    public class TankTurretConfigData
-    {
-        public float rotationSpeed;
-    }
-
-    [Serializable]
-    public class TankTurretStateData
-    {
-        public Transform target;
-    }
-
-    public class TankTurretBookkeepData
-    {
-
-    }
-
-    public TankTurretConfigData m_configData;
-    private TankTurretStateData m_stateData;
-    private TankTurretBookkeepData m_bookkeepData;
+    public float m_rotationSpeed;
+    
+    // State
+    private Transform m_target;
 
     // Use this for initialization
     void Start()
     {
-        m_stateData = new TankTurretStateData();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_stateData.target)
+        if (m_target)
         {
-            Vector3 toTarget = m_stateData.target.position - m_turretObj.transform.position;
+            Vector3 toTarget = m_target.position - m_turretObj.transform.position;
             float angleToTarget = m_turretObj.transform.forward.GetDiffAngle2D(toTarget);
-            float angleToTurn = angleToTarget.Sign() * Mathf.Min(angleToTarget.Abs(), m_configData.rotationSpeed * Time.deltaTime);
+            float angleToTurn = angleToTarget.Sign() * Mathf.Min(angleToTarget.Abs(), m_rotationSpeed * Time.deltaTime);
             m_turretObj.transform.Rotate(Vector3.up, angleToTurn);
         }
     }
 
     public void M_SetTarget(Transform target)
     {
-        m_stateData.target = target;
+        m_target = target;
+    }
+
+    public string M_GetSavedComponent()
+    {
+        JObject savedComponent = new JObject();
+        //savedComponent.Add("StateData", JsonConvert.SerializeObject((m_stateData)));
+
+        return savedComponent.ToString();
     }
 }

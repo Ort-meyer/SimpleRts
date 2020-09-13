@@ -2,30 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
 
 public class TankUnit : BaseUnit
 {
-    [Serializable]
-    public class TankConfigData
-    {
-        public float maxHp;
-    }
-
-    [Serializable]
-    public class TankStateData
-    {
-        public float currentHp;
-    }
-
-    [Serializable]
-    public class TankBookkeepData
-    {
-
-    }
-
-    public TankConfigData m_tankConfigData;
-    private TankStateData m_tankStateData;
-    private TankBookkeepData m_tankBookData;
+    // Configurable
+    public float m_maxHp;
+    
+    // State
+    private float m_currentHp;
 
 
     private TankMovement m_tankMovement;
@@ -40,10 +27,7 @@ public class TankUnit : BaseUnit
         m_tankTurret = GetComponent<TankTurret>();
         m_cannon = GetComponent<CannonWeapon>();
 
-        m_tankStateData = new TankStateData();
-        m_tankBookData = new TankBookkeepData();
-
-        m_tankStateData.currentHp = m_tankConfigData.maxHp;
+        m_currentHp = m_maxHp;
     }
 
     // Update is called once per frame
@@ -66,11 +50,27 @@ public class TankUnit : BaseUnit
 
     public override void M_InflictDamage(float damage)
     {
-        m_tankStateData.currentHp -= damage;
-        if(m_tankStateData.currentHp <= 0)
+        m_currentHp -= damage;
+        if(m_currentHp <= 0)
         {
-            GameManager.Instance.M_GetPlayer(m_configData.faction).M_RemoveUnit(gameObject.GetInstanceID()); // TODO assert that this is successfully removed?
+            GameManager.Instance.M_GetPlayer(m_faction).M_RemoveUnit(gameObject.GetInstanceID()); // TODO assert that this is successfully removed?
             Destroy(this.gameObject);
         }
+    }
+
+    public override string M_GetSavedUnit()
+    {
+        JObject savedUnit = new JObject();
+        //savedUnit.Add("StateData", JsonConvert.SerializeObject(m_tankStateData));
+        //savedUnit.Add("Movement", JsonConvert.SerializeObject(m_tankMovement.M_GetSavedComponent()));
+        //savedUnit.Add("Cannon", JsonConvert.SerializeObject(m_cannon.M_GetSavedComponent()));
+        //savedUnit.Add("Turret", JsonConvert.SerializeObject(m_tankTurret.M_GetSavedComponent()));
+
+        return savedUnit.ToString();
+    }
+
+    public override void M_CreateFromUnit(JObject loadedUnit)
+    {
+
     }
 }

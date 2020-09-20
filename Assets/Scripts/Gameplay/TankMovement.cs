@@ -20,10 +20,9 @@ public class TankMovement : MonoBehaviour
     // State
     public float m_movementSpeed;
     //public float currentRotation;
-
     public Vector3 m_destination;
 
-    
+
     // Use this for initialization
     void Start()
     {
@@ -73,13 +72,35 @@ public class TankMovement : MonoBehaviour
     public string M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
-        //savedComponent.Add("StateData", JsonConvert.SerializeObject(()));
+        //savedComponent.Add("PosX", transform.localPosition.x);
+        //savedComponent.Add("PosY", transform.localPosition.y);
+        //savedComponent.Add("PosZ", transform.localPosition.z);
+        //savedComponent.Add("RotX", transform.localEulerAngles.x);
+        //savedComponent.Add("RotY", transform.localEulerAngles.y);
+        //savedComponent.Add("RotZ", transform.localEulerAngles.z);
+        savedComponent.Add("MovementSpeed", m_movementSpeed);
+        savedComponent.Add("DestX", m_destination.x);
+        savedComponent.Add("DestY", m_destination.y);
+        savedComponent.Add("DestZ", m_destination.z);
 
         return savedComponent.ToString();
     }
 
-    public void M_CreateFromSavedComponent(JObject component)
+    public void M_CreateFromSavedComponent(string component)
     {
-        //m_stateData = component["stateData"];
+        JObject loadedComponent = JObject.Parse(component);
+        //transform.localPosition = new Vector3(
+        //    float.Parse(loadedComponent["PosX"].ToString()),
+        //    float.Parse(loadedComponent["PosY"].ToString()),
+        //    float.Parse(loadedComponent["PosZ"].ToString()));
+        //transform.localEulerAngles = new Vector3(
+        //    float.Parse(loadedComponent["RotX"].ToString()),
+        //    float.Parse(loadedComponent["RotY"].ToString()),
+        //    float.Parse(loadedComponent["RotZ"].ToString()));
+        m_movementSpeed = float.Parse(loadedComponent["MovementSpeed"].ToString());
+        m_destination = new Vector3(
+            float.Parse(loadedComponent["DestX"].ToString()),
+            float.Parse(loadedComponent["DestY"].ToString()),
+            float.Parse(loadedComponent["DestZ"].ToString()));
     }
 }

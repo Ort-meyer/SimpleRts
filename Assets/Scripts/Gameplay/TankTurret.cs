@@ -39,8 +39,26 @@ public class TankTurret : MonoBehaviour
     public string M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
-        //savedComponent.Add("StateData", JsonConvert.SerializeObject((m_stateData)));
+        savedComponent.Add("PosX", m_turretObj.transform.localPosition.x);
+        savedComponent.Add("PosY", m_turretObj.transform.localPosition.y);
+        savedComponent.Add("PosZ", m_turretObj.transform.localPosition.z);
+        savedComponent.Add("RotX", m_turretObj.transform.localEulerAngles.x);
+        savedComponent.Add("RotY", m_turretObj.transform.localEulerAngles.y);
+        savedComponent.Add("RotZ", m_turretObj.transform.localEulerAngles.z);
 
         return savedComponent.ToString();
+    }
+
+    public void M_CreateFromSavedComponent(string component)
+    {
+        JObject loadedComponent = JObject.Parse(component);
+        m_turretObj.transform.localPosition = new Vector3(
+            float.Parse(loadedComponent["PosX"].ToString()),
+            float.Parse(loadedComponent["PosY"].ToString()),
+            float.Parse(loadedComponent["PosZ"].ToString()));
+        m_turretObj.transform.localEulerAngles = new Vector3(
+            float.Parse(loadedComponent["RotX"].ToString()),
+            float.Parse(loadedComponent["RotY"].ToString()),
+            float.Parse(loadedComponent["RotZ"].ToString()));
     }
 }

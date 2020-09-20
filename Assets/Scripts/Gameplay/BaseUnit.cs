@@ -25,6 +25,6 @@ public abstract class BaseUnit : MonoBehaviour
     public abstract void M_AttackOrder(Transform target);
     public abstract void M_InflictDamage(float damage);
     public abstract string M_GetSavedUnit();
-    public abstract void M_CreateFromUnit(JObject loadedUnit);
+    public abstract void M_CreateFromUnit(string loadedUnitStr);
 
 }

@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cb2cbe69fe5f5478ba059f6041f921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitToSave: {fileID: 396469774}
 --- !u!114 &300510477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,8 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_debugunits: []
-  m_configData:
-    faction: 2
+  m_faction: 2
 --- !u!114 &991475701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,11 +851,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4533093050090114, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_Name
-      value: Tank (1)
+      value: EnemyTank
       objectReference: {fileID: 0}
     - target: {fileID: 114007870454314680, guid: a2591c7aa86ef9447b8a438b7439ef20,
         type: 2}
@@ -866,6 +866,11 @@ Prefab:
         type: 2}
       propertyPath: m_tankConfigData.maxHp
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007870454314680, guid: a2591c7aa86ef9447b8a438b7439ef20,
+        type: 2}
+      propertyPath: m_faction
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
@@ -1259,7 +1264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4533093050090114, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
@@ -1722,11 +1727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efcca76c8f58fe47809a102d588a32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_configData:
-    keyMoveSpeed: 22
-    mouseMoveSpeed: 33
-    mouseRotationSpeed: 222
-    mouseZoomSpeed: 33
+  m_keyMoveSpeed: 0
+  m_mouseMoveSpeed: 0
+  m_mouseRotationSpeed: 0
+  m_mouseZoomSpeed: 0
 --- !u!1 &1752051249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,8 +2053,7 @@ MonoBehaviour:
   - {fileID: 57213209}
   - {fileID: 651577658}
   - {fileID: 1999917667}
-  m_configData:
-    faction: 1
+  m_faction: 1
 --- !u!114 &2084305707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,8 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b11af18790fe674a8cfe5646c8ebe5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_configData:
-    selectionTexture: {fileID: 2800000, guid: 6f7b43857bad461419ffffa82fe2c322, type: 3}
-    selectionEdgeTexture: {fileID: 2800000, guid: b9de438c24b8b8546b23cd14e8e19ae4,
-      type: 3}
-    edgeThickness: 1
+  m_selectionTexture: {fileID: 2800000, guid: 6f7b43857bad461419ffffa82fe2c322, type: 3}
+  m_selectionEdgeTexture: {fileID: 2800000, guid: b9de438c24b8b8546b23cd14e8e19ae4,
+    type: 3}
+  m_edgeThickness: 3

@@ -112,8 +112,28 @@ public class CannonWeapon : MonoBehaviour
     public string M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
-        //savedComponent.Add("StateData", JsonConvert.SerializeObject(()));
+        savedComponent.Add("PosX", m_cannonObj.transform.localPosition.x);
+        savedComponent.Add("PosY", m_cannonObj.transform.localPosition.y);
+        savedComponent.Add("PosZ", m_cannonObj.transform.localPosition.z);
+        savedComponent.Add("RotX", m_cannonObj.transform.localEulerAngles.x);
+        savedComponent.Add("RotY", m_cannonObj.transform.localEulerAngles.y);
+        savedComponent.Add("RotZ", m_cannonObj.transform.localEulerAngles.z);
+        savedComponent.Add("CurrentCooldown", m_currentFireCooldown);
 
         return savedComponent.ToString();
+    }
+
+    public void M_CreateFromSavedComponent(string component)
+    {
+        JObject loadedComponent = JObject.Parse(component);
+        m_cannonObj.transform.localPosition = new Vector3(
+            float.Parse(loadedComponent["PosX"].ToString()),
+            float.Parse(loadedComponent["PosY"].ToString()),
+            float.Parse(loadedComponent["PosZ"].ToString()));
+        m_cannonObj.transform.localEulerAngles = new Vector3(
+            float.Parse(loadedComponent["RotX"].ToString()),
+            float.Parse(loadedComponent["RotY"].ToString()),
+            float.Parse(loadedComponent["RotZ"].ToString()));
+        m_currentFireCooldown = float.Parse(loadedComponent["CurrentCooldown"].ToString());
     }
 }

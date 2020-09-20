@@ -7,6 +7,9 @@ public class SimpleDebugScript : MonoBehaviour
 
     public GameObject unitToSave;
 
+
+    private string savedObject;
+
     //abstract class Saveable
     //{
     //    public abstract void M_Save();
@@ -46,9 +49,16 @@ public class SimpleDebugScript : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.H))
         {
-            string jsonStr = unitToSave.GetComponent<TankUnit>().M_GetSavedUnit().ToString();
-            Debug.Log(jsonStr);
+            savedObject = unitToSave.GetComponent<TankUnit>().M_GetSavedUnit().ToString();
+            
+            
+            //Debug.Log(jsonStr);
         }
+        else if(Input.GetKey(KeyCode.J))
+        {
+            unitToSave.GetComponent<TankUnit>().M_CreateFromUnit(savedObject);
+        }
+
     }
 
     private void M_RightClick()

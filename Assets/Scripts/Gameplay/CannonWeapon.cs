@@ -123,17 +123,16 @@ public class CannonWeapon : MonoBehaviour
         return savedComponent;
     }
 
-    public void M_CreateFromSavedComponent(string component)
+    public void M_CreateFromSavedComponent(JToken component)
     {
-        JObject loadedComponent = JObject.Parse(component);
         m_cannonObj.transform.localPosition = new Vector3(
-            float.Parse(loadedComponent["PosX"].ToString()),
-            float.Parse(loadedComponent["PosY"].ToString()),
-            float.Parse(loadedComponent["PosZ"].ToString()));
+            float.Parse(component["PosX"].ToString()),
+            float.Parse(component["PosY"].ToString()),
+            float.Parse(component["PosZ"].ToString()));
         m_cannonObj.transform.localEulerAngles = new Vector3(
-            float.Parse(loadedComponent["RotX"].ToString()),
-            float.Parse(loadedComponent["RotY"].ToString()),
-            float.Parse(loadedComponent["RotZ"].ToString()));
-        m_currentFireCooldown = float.Parse(loadedComponent["CurrentCooldown"].ToString());
+            float.Parse(component["RotX"].ToString()),
+            float.Parse(component["RotY"].ToString()),
+            float.Parse(component["RotZ"].ToString()));
+        m_currentFireCooldown = float.Parse(component["CurrentCooldown"].ToString());
     }
 }

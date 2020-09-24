@@ -367,6 +367,10 @@ Prefab:
       propertyPath: m_Name
       value: Tank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
   m_IsPrefabParent: 0
@@ -722,6 +726,10 @@ Prefab:
       propertyPath: m_Name
       value: Tank (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
   m_IsPrefabParent: 0
@@ -851,7 +859,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4533093050090114, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_Name
@@ -871,6 +879,10 @@ Prefab:
         type: 2}
       propertyPath: m_faction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
@@ -1264,7 +1276,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4533093050090114, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
@@ -1339,6 +1355,10 @@ Prefab:
     - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
       propertyPath: m_Name
       value: Tank (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
@@ -1529,7 +1549,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1545604349}
-  - component: {fileID: 1545604350}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -1550,18 +1569,6 @@ Transform:
   m_Father: {fileID: 584600953}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1545604350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1545604348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bd6cb57a152d7941b8fdd8e410b390c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_players: []
 --- !u!1 &1547272119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,7 +1857,7 @@ RectTransform:
   - {fileID: 1492590748}
   - {fileID: 1420789078}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1897,7 +1904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd6cb57a152d7941b8fdd8e410b390c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_players: []
+  debugTankPrefab: {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20,
+    type: 2}
 --- !u!1 &1851482069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,7 +1966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1966845143
 Prefab:
@@ -1997,7 +2005,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4341654485274316, guid: 1c7c1b163e1e5564b9515bc539537740, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c7c1b163e1e5564b9515bc539537740, type: 2}

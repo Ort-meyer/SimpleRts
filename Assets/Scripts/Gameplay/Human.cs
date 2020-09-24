@@ -38,7 +38,7 @@ public class Human : MonoBehaviour
         RaycastHit[] hits = InputManager.Instance.M_GetMousePointerHits();
         if (hits.Length > 0)
         {
-            GameObject closestObjHit = hits[0].transform.gameObject;
+            GameObject closestObjHit = M_ClosestHit(hits).transform.gameObject;
             BaseUnit hitUnit = closestObjHit.GetComponentInParent<BaseUnit>();
             // Hit other player unit (all other players are enemies for now)
             if (hitUnit && hitUnit.m_faction != m_player.m_faction)
@@ -50,6 +50,21 @@ public class Human : MonoBehaviour
                 m_player.M_MoveOrder(hits[0].point);
             }
         }
+    }
+
+    private RaycastHit M_ClosestHit(RaycastHit[] hits)
+    {
+        float closest = 1000000;
+        RaycastHit closestHit = new RaycastHit();
+        foreach(RaycastHit hit in hits)
+        {
+            if(hit.distance < closest)
+            {
+                closest = hit.distance;
+                closestHit = hit;
+            }
+        }
+        return closestHit;
     }
     
     private void M_SelectUnits()

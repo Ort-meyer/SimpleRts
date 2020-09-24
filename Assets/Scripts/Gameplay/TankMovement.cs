@@ -86,21 +86,12 @@ public class TankMovement : MonoBehaviour
         return savedComponent;
     }
 
-    public void M_CreateFromSavedComponent(string component)
+    public void M_CreateFromSavedComponent(JToken component)
     {
-        JObject loadedComponent = JObject.Parse(component);
-        //transform.localPosition = new Vector3(
-        //    float.Parse(loadedComponent["PosX"].ToString()),
-        //    float.Parse(loadedComponent["PosY"].ToString()),
-        //    float.Parse(loadedComponent["PosZ"].ToString()));
-        //transform.localEulerAngles = new Vector3(
-        //    float.Parse(loadedComponent["RotX"].ToString()),
-        //    float.Parse(loadedComponent["RotY"].ToString()),
-        //    float.Parse(loadedComponent["RotZ"].ToString()));
-        m_movementSpeed = float.Parse(loadedComponent["MovementSpeed"].ToString());
+        m_movementSpeed = float.Parse(component["MovementSpeed"].ToString());
         m_destination = new Vector3(
-            float.Parse(loadedComponent["DestX"].ToString()),
-            float.Parse(loadedComponent["DestY"].ToString()),
-            float.Parse(loadedComponent["DestZ"].ToString()));
+            float.Parse(component["DestX"].ToString()),
+            float.Parse(component["DestY"].ToString()),
+            float.Parse(component["DestZ"].ToString()));
     }
 }

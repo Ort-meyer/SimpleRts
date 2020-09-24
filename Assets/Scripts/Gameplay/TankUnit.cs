@@ -23,6 +23,15 @@ public class TankUnit : BaseUnit
     // Use this for initialization
     void Start()
     {
+        //m_tankMovement = GetComponent<TankMovement>();
+        //m_tankTurret = GetComponent<TankTurret>();
+        //m_cannon = GetComponent<CannonWeapon>();
+
+        //m_currentHp = m_maxHp;
+    }
+
+    private void Awake()
+    {
         m_tankMovement = GetComponent<TankMovement>();
         m_tankTurret = GetComponent<TankTurret>();
         m_cannon = GetComponent<CannonWeapon>();
@@ -34,6 +43,13 @@ public class TankUnit : BaseUnit
     void Update()
     {
 
+    }
+
+    public void M_InitComponentConnection()
+    {
+        //m_tankMovement = GetComponent<TankMovement>();
+        //m_tankTurret = GetComponent<TankTurret>();
+        //m_cannon = GetComponent<CannonWeapon>();
     }
 
     public override void M_MoveTo(Vector3 position)
@@ -53,7 +69,7 @@ public class TankUnit : BaseUnit
         m_currentHp -= damage;
         if(m_currentHp <= 0)
         {
-            GameManager.Instance.M_GetPlayer(m_faction).M_RemoveUnit(gameObject.GetInstanceID()); // TODO assert that this is successfully removed?
+            GameManager.Instance.m_players[m_faction].M_RemoveUnit(gameObject.GetInstanceID()); // TODO assert that this is successfully removed?
             Destroy(this.gameObject);
         }
     }
@@ -86,6 +102,7 @@ public class TankUnit : BaseUnit
     public override void M_CreateFromUnit(JToken loadedUnitJson)
     {
         m_currentHp = float.Parse(loadedUnitJson["CurrentHP"].ToString());
+        m_faction = Int32.Parse(loadedUnitJson["Faction"].ToString());
         transform.localPosition = new Vector3(
             float.Parse(loadedUnitJson["PosX"].ToString()),
             float.Parse(loadedUnitJson["PosY"].ToString()),
@@ -94,10 +111,10 @@ public class TankUnit : BaseUnit
             float.Parse(loadedUnitJson["RotX"].ToString()),
             float.Parse(loadedUnitJson["RotY"].ToString()),
             float.Parse(loadedUnitJson["RotZ"].ToString()));
-        return;
-        m_tankMovement.M_CreateFromSavedComponent(loadedUnitJson["Movement"].ToString());
-        m_cannon.M_CreateFromSavedComponent(loadedUnitJson["Cannon"].ToString());
-        m_tankTurret.M_CreateFromSavedComponent(loadedUnitJson["Turret"].ToString());
+        var d = loadedUnitJson["Movement"];
+        m_tankMovement.M_CreateFromSavedComponent(loadedUnitJson["Movement"]);
+        m_cannon.M_CreateFromSavedComponent(loadedUnitJson["Cannon"]);
+        m_tankTurret.M_CreateFromSavedComponent(loadedUnitJson["Turret"]);
 
     }
 }

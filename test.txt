@@ -1,0 +1,169 @@
+{
+  "Units": [
+    {
+      "Faction": 2,
+      "CurrentHP": 10.0,
+      "PosX": 6.619,
+      "PosY": 0.228731826,
+      "PosZ": 4.35,
+      "RotX": 0.0,
+      "RotY": 0.0,
+      "RotZ": 0.0,
+      "Movement": {
+        "MovementSpeed": 0.0,
+        "DestX": 6.619,
+        "DestY": 0.68,
+        "DestZ": 4.35
+      },
+      "Cannon": {
+        "PosX": 0.0,
+        "PosY": 0.0,
+        "PosZ": 0.43,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0,
+        "CurrentCooldown": -111.127548
+      },
+      "Turret": {
+        "PosX": 0.0,
+        "PosY": 0.263,
+        "PosZ": 0.0,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0
+      }
+    },
+    {
+      "Faction": 1,
+      "CurrentHP": 10.0,
+      "PosX": 11.71,
+      "PosY": 0.228731826,
+      "PosZ": 7.07,
+      "RotX": 0.0,
+      "RotY": 0.0,
+      "RotZ": 0.0,
+      "Movement": {
+        "MovementSpeed": 0.0,
+        "DestX": 11.71,
+        "DestY": 0.68,
+        "DestZ": 7.07
+      },
+      "Cannon": {
+        "PosX": 0.0,
+        "PosY": 0.0,
+        "PosZ": 0.43,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0,
+        "CurrentCooldown": -111.127548
+      },
+      "Turret": {
+        "PosX": 0.0,
+        "PosY": 0.263,
+        "PosZ": 0.0,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0
+      }
+    },
+    {
+      "Faction": 1,
+      "CurrentHP": 10.0,
+      "PosX": 6.619,
+      "PosY": 0.228731826,
+      "PosZ": 7.07,
+      "RotX": 0.0,
+      "RotY": 0.0,
+      "RotZ": 0.0,
+      "Movement": {
+        "MovementSpeed": 0.0,
+        "DestX": 6.619,
+        "DestY": 0.68,
+        "DestZ": 7.07
+      },
+      "Cannon": {
+        "PosX": 0.0,
+        "PosY": 0.0,
+        "PosZ": 0.43,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0,
+        "CurrentCooldown": -111.127548
+      },
+      "Turret": {
+        "PosX": 0.0,
+        "PosY": 0.263,
+        "PosZ": 0.0,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0
+      }
+    },
+    {
+      "Faction": 1,
+      "CurrentHP": 10.0,
+      "PosX": 15.19,
+      "PosY": 0.228731826,
+      "PosZ": 7.07,
+      "RotX": 0.0,
+      "RotY": 0.0,
+      "RotZ": 0.0,
+      "Movement": {
+        "MovementSpeed": 0.0,
+        "DestX": 15.19,
+        "DestY": 0.68,
+        "DestZ": 7.07
+      },
+      "Cannon": {
+        "PosX": 0.0,
+        "PosY": 0.0,
+        "PosZ": 0.43,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0,
+        "CurrentCooldown": -111.127548
+      },
+      "Turret": {
+        "PosX": 0.0,
+        "PosY": 0.263,
+        "PosZ": 0.0,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0
+      }
+    },
+    {
+      "Faction": 1,
+      "CurrentHP": 10.0,
+      "PosX": 9.11,
+      "PosY": 0.228731826,
+      "PosZ": 7.07,
+      "RotX": 0.0,
+      "RotY": 0.0,
+      "RotZ": 0.0,
+      "Movement": {
+        "MovementSpeed": 0.0,
+        "DestX": 9.11,
+        "DestY": 0.68,
+        "DestZ": 7.07
+      },
+      "Cannon": {
+        "PosX": 0.0,
+        "PosY": 0.0,
+        "PosZ": 0.43,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0,
+        "CurrentCooldown": -111.127548
+      },
+      "Turret": {
+        "PosX": 0.0,
+        "PosY": 0.263,
+        "PosZ": 0.0,
+        "RotX": 0.0,
+        "RotY": 0.0,
+        "RotZ": 0.0
+      }
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class SimpleDebugScript : MonoBehaviour
 {
@@ -59,6 +62,10 @@ public class SimpleDebugScript : MonoBehaviour
             unitToSave.GetComponent<TankUnit>().M_CreateFromUnit(savedObject);
         }
 
+        else if (Input.GetKey(KeyCode.M))
+        {
+            M_SaveWorld();
+        }
     }
 
     private void M_RightClick()
@@ -76,5 +83,27 @@ public class SimpleDebugScript : MonoBehaviour
     private void M_ExclusiveRightClick()
     {
         Debug.Log("Exclusive right click");
+    }
+
+    private void M_SaveWorld()
+    {
+        //JObject topObject = new JObject();
+        //JObject innerObject = new JObject();
+        //innerObject.Add("val", 1);
+        //topObject.Add("inner", innerObject);
+        //System.IO.File.WriteAllText("test.txt", topObject.ToString());
+        
+        JObject savedWorld = new JObject();
+        JArray units = new JArray();
+        // Save all units
+        foreach (Player player in GameManager.Instance.m_players)
+        {
+            foreach(BaseUnit unit in player.m_units.Values)
+            {
+                units.Add(unit.M_GetSavedUnit());
+            }
+        }
+        savedWorld.Add("Units", units);
+        System.IO.File.WriteAllText("test.txt", savedWorld.ToString());
     }
 }

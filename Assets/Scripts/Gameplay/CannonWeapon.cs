@@ -109,7 +109,7 @@ public class CannonWeapon : MonoBehaviour
         //m_currentCooldown = m_maxCooldown;
     }
 
-    public string M_GetSavedComponent()
+    public JObject M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
         savedComponent.Add("PosX", m_cannonObj.transform.localPosition.x);
@@ -120,7 +120,7 @@ public class CannonWeapon : MonoBehaviour
         savedComponent.Add("RotZ", m_cannonObj.transform.localEulerAngles.z);
         savedComponent.Add("CurrentCooldown", m_currentFireCooldown);
 
-        return savedComponent.ToString();
+        return savedComponent;
     }
 
     public void M_CreateFromSavedComponent(string component)

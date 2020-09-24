@@ -58,10 +58,11 @@ public class TankUnit : BaseUnit
         }
     }
 
-    public override string M_GetSavedUnit()
+    public override JObject M_GetSavedUnit()
     {
         JObject savedUnit = new JObject();
         // This unit
+        savedUnit.Add("Faction", m_faction);
         savedUnit.Add("CurrentHP", m_currentHp);
         savedUnit.Add("PosX", transform.localPosition.x);
         savedUnit.Add("PosY", transform.localPosition.y);
@@ -79,7 +80,7 @@ public class TankUnit : BaseUnit
         //savedUnit.Add("Cannon", JsonConvert.SerializeObject(m_cannon.M_GetSavedComponent()));
         //savedUnit.Add("Turret", JsonConvert.SerializeObject(m_tankTurret.M_GetSavedComponent()));
 
-        return savedUnit.ToString();
+        return savedUnit;
     }
 
     public override void M_CreateFromUnit(string loadedUnitStr)

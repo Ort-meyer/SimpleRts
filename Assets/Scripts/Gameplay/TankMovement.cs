@@ -69,7 +69,7 @@ public class TankMovement : MonoBehaviour
         m_destination = transform.position; // TODO improve. This is stupid ugly way of stopping
     }
 
-    public string M_GetSavedComponent()
+    public JObject M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
         //savedComponent.Add("PosX", transform.localPosition.x);
@@ -83,7 +83,7 @@ public class TankMovement : MonoBehaviour
         savedComponent.Add("DestY", m_destination.y);
         savedComponent.Add("DestZ", m_destination.z);
 
-        return savedComponent.ToString();
+        return savedComponent;
     }
 
     public void M_CreateFromSavedComponent(string component)

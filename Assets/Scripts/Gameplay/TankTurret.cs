@@ -36,7 +36,7 @@ public class TankTurret : MonoBehaviour
         m_target = target;
     }
 
-    public string M_GetSavedComponent()
+    public JObject M_GetSavedComponent()
     {
         JObject savedComponent = new JObject();
         savedComponent.Add("PosX", m_turretObj.transform.localPosition.x);
@@ -46,7 +46,7 @@ public class TankTurret : MonoBehaviour
         savedComponent.Add("RotY", m_turretObj.transform.localEulerAngles.y);
         savedComponent.Add("RotZ", m_turretObj.transform.localEulerAngles.z);
 
-        return savedComponent.ToString();
+        return savedComponent;
     }
 
     public void M_CreateFromSavedComponent(string component)

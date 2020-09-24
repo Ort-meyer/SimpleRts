@@ -13,12 +13,6 @@ public class Player : MonoBehaviour
     public Dictionary<int, BaseUnit> m_units = new Dictionary<int, BaseUnit>();
     public Dictionary<int, BaseUnit> m_selectedUnits = new Dictionary<int, BaseUnit>();
     
-
-    public class PlayerBookkeepData
-    {
-
-    }
-
     // Use this for initialization
     void Start()
     {

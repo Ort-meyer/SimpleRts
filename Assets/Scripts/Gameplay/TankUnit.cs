@@ -83,22 +83,21 @@ public class TankUnit : BaseUnit
         return savedUnit;
     }
 
-    public override void M_CreateFromUnit(string loadedUnitStr)
+    public override void M_CreateFromUnit(JToken loadedUnitJson)
     {
-        JObject loadedUnit = JObject.Parse(loadedUnitStr);
-        m_currentHp = float.Parse(loadedUnit["CurrentHP"].ToString());
+        m_currentHp = float.Parse(loadedUnitJson["CurrentHP"].ToString());
         transform.localPosition = new Vector3(
-            float.Parse(loadedUnit["PosX"].ToString()),
-            float.Parse(loadedUnit["PosY"].ToString()),
-            float.Parse(loadedUnit["PosZ"].ToString()));
+            float.Parse(loadedUnitJson["PosX"].ToString()),
+            float.Parse(loadedUnitJson["PosY"].ToString()),
+            float.Parse(loadedUnitJson["PosZ"].ToString()));
         transform.localEulerAngles = new Vector3(
-            float.Parse(loadedUnit["RotX"].ToString()),
-            float.Parse(loadedUnit["RotY"].ToString()),
-            float.Parse(loadedUnit["RotZ"].ToString()));
-
-        m_tankMovement.M_CreateFromSavedComponent(loadedUnit["Movement"].ToString());
-        m_cannon.M_CreateFromSavedComponent(loadedUnit["Cannon"].ToString());
-        m_tankTurret.M_CreateFromSavedComponent(loadedUnit["Turret"].ToString());
+            float.Parse(loadedUnitJson["RotX"].ToString()),
+            float.Parse(loadedUnitJson["RotY"].ToString()),
+            float.Parse(loadedUnitJson["RotZ"].ToString()));
+        return;
+        m_tankMovement.M_CreateFromSavedComponent(loadedUnitJson["Movement"].ToString());
+        m_cannon.M_CreateFromSavedComponent(loadedUnitJson["Cannon"].ToString());
+        m_tankTurret.M_CreateFromSavedComponent(loadedUnitJson["Turret"].ToString());
 
     }
 }

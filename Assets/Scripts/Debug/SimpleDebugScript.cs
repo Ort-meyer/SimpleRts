@@ -93,17 +93,6 @@ public class SimpleDebugScript : MonoBehaviour
         //topObject.Add("inner", innerObject);
         //System.IO.File.WriteAllText("test.txt", topObject.ToString());
         
-        JObject savedWorld = new JObject();
-        JArray units = new JArray();
-        // Save all units
-        foreach (Player player in GameManager.Instance.m_players)
-        {
-            foreach(BaseUnit unit in player.m_units.Values)
-            {
-                units.Add(unit.M_GetSavedUnit());
-            }
-        }
-        savedWorld.Add("Units", units);
-        System.IO.File.WriteAllText("test.txt", savedWorld.ToString());
+
     }
 }

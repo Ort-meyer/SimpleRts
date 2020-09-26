@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
@@ -66,7 +67,9 @@ public class GameManager : Singleton<GameManager>
         JObject loadedWorld = JObject.Parse(worldString);
         foreach(var o in loadedWorld["Units"])
         {
-            BaseUnit newUnit = Instantiate(debugTankPrefab).GetComponent<BaseUnit>();
+            int prefabIndex = Int32.Parse(o["PrefabIndex"].ToString());
+            //BaseUnit newUnit = Instantiate(debugTankPrefab).GetComponent<BaseUnit>();
+            BaseUnit newUnit = BuilderManager.Instance.M_BuildUnit(prefabIndex).GetComponent<BaseUnit>();
             newUnit.M_CreateFromUnit(o);
             m_players[newUnit.m_faction].M_AddUnit(newUnit); // This is risky. Crashes if for some reason faction doesn't exist
         }

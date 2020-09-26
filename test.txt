@@ -1,6 +1,7 @@
 {
   "Units": [
     {
+      "PrefabIndex": 0,
       "Faction": 2,
       "CurrentHP": 10.0,
       "PosX": 6.25831556,
@@ -22,7 +23,7 @@
         "RotX": 0.0,
         "RotY": 0.0,
         "RotZ": 0.0,
-        "CurrentCooldown": -5.24726152
+        "CurrentCooldown": 1.29996216
       },
       "Turret": {
         "PosX": 0.0,
@@ -34,6 +35,7 @@
       }
     },
     {
+      "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 10.0,
       "PosX": 14.21415,
@@ -54,8 +56,8 @@
         "PosZ": 0.43,
         "RotX": 350.1963,
         "RotY": 0.000185093915,
-        "RotZ": 0.0,
-        "CurrentCooldown": 4.761234
+        "RotZ": -1.65257673E-12,
+        "CurrentCooldown": 1.29996216
       },
       "Turret": {
         "PosX": 0.0,
@@ -67,6 +69,7 @@
       }
     },
     {
+      "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 10.0,
       "PosX": 12.5860577,
@@ -85,10 +88,10 @@
         "PosX": 0.0,
         "PosY": 0.0,
         "PosZ": 0.43,
-        "RotX": 350.724518,
+        "RotX": 350.7245,
         "RotY": 0.0005413412,
         "RotZ": 0.0,
-        "CurrentCooldown": 4.761234
+        "CurrentCooldown": 1.29996216
       },
       "Turret": {
         "PosX": 0.0,
@@ -100,6 +103,7 @@
       }
     },
     {
+      "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 10.0,
       "PosX": 13.8228636,
@@ -120,8 +124,8 @@
         "PosZ": 0.43,
         "RotX": 351.3402,
         "RotY": -0.000219216658,
-        "RotZ": 1.64722261E-12,
-        "CurrentCooldown": 4.761234
+        "RotZ": 3.29444523E-12,
+        "CurrentCooldown": 1.29996216
       },
       "Turret": {
         "PosX": 0.0,
@@ -133,6 +137,7 @@
       }
     },
     {
+      "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 9.0,
       "PosX": 12.0679436,
@@ -154,7 +159,7 @@
         "RotX": 351.949768,
         "RotY": -2.39781075E-05,
         "RotZ": 0.0,
-        "CurrentCooldown": 4.761234
+        "CurrentCooldown": 1.29996216
       },
       "Turret": {
         "PosX": 0.0,

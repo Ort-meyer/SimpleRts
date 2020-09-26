@@ -78,6 +78,7 @@ public class TankUnit : BaseUnit
     {
         JObject savedUnit = new JObject();
         // This unit
+        savedUnit.Add("PrefabIndex", m_prefabIndex);
         savedUnit.Add("Faction", m_faction);
         savedUnit.Add("CurrentHP", m_currentHp);
         savedUnit.Add("PosX", transform.localPosition.x);

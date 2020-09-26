@@ -6,7 +6,10 @@ using Newtonsoft.Json.Linq;
 
 public abstract class BaseUnit : MonoBehaviour
 {
+    // Configue
+    public int m_prefabIndex;
 
+    // State
     public int m_faction;
 
     // Use this for initialization

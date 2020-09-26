@@ -1,33 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-
-public class TankUnit : BaseUnit
+public class BuggyUnit : BaseUnit
 {
     // Configurable
     public float m_maxHp;
-    
+
     // State
     private float m_currentHp;
 
+    private float m_uniqueDebugInt; // To test different unit loads
 
     private TankMovement m_tankMovement;
     private TankTurret m_tankTurret;
     private CannonWeapon m_cannon;
 
-
     // Use this for initialization
     void Start()
     {
-        //m_tankMovement = GetComponent<TankMovement>();
-        //m_tankTurret = GetComponent<TankTurret>();
-        //m_cannon = GetComponent<CannonWeapon>();
 
-        //m_currentHp = m_maxHp;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     private void Awake()
@@ -37,19 +38,8 @@ public class TankUnit : BaseUnit
         m_cannon = GetComponent<CannonWeapon>();
 
         m_currentHp = m_maxHp;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void M_InitComponentConnection()
-    {
-        //m_tankMovement = GetComponent<TankMovement>();
-        //m_tankTurret = GetComponent<TankTurret>();
-        //m_cannon = GetComponent<CannonWeapon>();
+        var r = new System.Random();
+        m_uniqueDebugInt = r.Next(5);
     }
 
     public override void M_MoveTo(Vector3 position)
@@ -67,7 +57,7 @@ public class TankUnit : BaseUnit
     public override void M_InflictDamage(float damage)
     {
         m_currentHp -= damage;
-        if(m_currentHp <= 0)
+        if (m_currentHp <= 0)
         {
             GameManager.Instance.m_players[m_faction].M_RemoveUnit(gameObject.GetInstanceID()); // TODO assert that this is successfully removed?
             Destroy(this.gameObject);
@@ -79,6 +69,7 @@ public class TankUnit : BaseUnit
         JObject savedUnit = new JObject();
         // This unit
         savedUnit.Add("PrefabIndex", m_prefabIndex);
+        savedUnit.Add("debug", m_uniqueDebugInt);
         savedUnit.Add("Faction", m_faction);
         savedUnit.Add("CurrentHP", m_currentHp);
         savedUnit.Add("PosX", transform.localPosition.x);
@@ -103,6 +94,7 @@ public class TankUnit : BaseUnit
     public override void M_CreateFromUnit(JToken loadedUnitJson)
     {
         m_currentHp = float.Parse(loadedUnitJson["CurrentHP"].ToString());
+        m_uniqueDebugInt = int.Parse(loadedUnitJson["debug"].ToString());
         m_faction = Int32.Parse(loadedUnitJson["Faction"].ToString());
         transform.localPosition = new Vector3(
             float.Parse(loadedUnitJson["PosX"].ToString()),

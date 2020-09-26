@@ -4,17 +4,17 @@
       "PrefabIndex": 0,
       "Faction": 2,
       "CurrentHP": 10.0,
-      "PosX": 6.25831556,
+      "PosX": 6.619,
       "PosY": 0.228731826,
-      "PosZ": 3.92306733,
+      "PosZ": 4.35,
       "RotX": 0.0,
       "RotY": 0.0,
       "RotZ": 0.0,
       "Movement": {
         "MovementSpeed": 0.0,
-        "DestX": 6.25831556,
-        "DestY": 0.228731826,
-        "DestZ": 3.92306733
+        "DestX": 6.619,
+        "DestY": 0.68,
+        "DestZ": 4.35
       },
       "Cannon": {
         "PosX": 0.0,
@@ -23,7 +23,7 @@
         "RotX": 0.0,
         "RotY": 0.0,
         "RotZ": 0.0,
-        "CurrentCooldown": 1.29996216
+        "CurrentCooldown": -0.921817541
       },
       "Turret": {
         "PosX": 0.0,
@@ -35,70 +35,37 @@
       }
     },
     {
-      "PrefabIndex": 0,
+      "PrefabIndex": 1,
+      "debug": 2.0,
       "Faction": 1,
-      "CurrentHP": 10.0,
-      "PosX": 14.21415,
+      "CurrentHP": 5.0,
+      "PosX": 15.3840408,
       "PosY": 0.228731826,
-      "PosZ": 15.579813,
+      "PosZ": 10.2449894,
       "RotX": 0.0,
-      "RotY": 335.4683,
+      "RotY": 114.911995,
       "RotZ": 0.0,
       "Movement": {
         "MovementSpeed": 0.0,
-        "DestX": 14.21415,
+        "DestX": 12.0905714,
         "DestY": 0.228731826,
-        "DestZ": 15.579813
+        "DestZ": 11.8352537
       },
       "Cannon": {
         "PosX": 0.0,
-        "PosY": 0.0,
-        "PosZ": 0.43,
-        "RotX": 350.1963,
-        "RotY": 0.000185093915,
-        "RotZ": -1.65257673E-12,
-        "CurrentCooldown": 1.29996216
-      },
-      "Turret": {
-        "PosX": 0.0,
-        "PosY": 0.263,
-        "PosZ": 0.0,
-        "RotX": 0.0,
-        "RotY": 238.845428,
-        "RotZ": 0.0
-      }
-    },
-    {
-      "PrefabIndex": 0,
-      "Faction": 1,
-      "CurrentHP": 10.0,
-      "PosX": 12.5860577,
-      "PosY": 0.228731826,
-      "PosZ": 15.737628,
-      "RotX": 0.0,
-      "RotY": 332.725769,
-      "RotZ": 0.0,
-      "Movement": {
-        "MovementSpeed": 0.0,
-        "DestX": 12.5860577,
-        "DestY": 0.228731826,
-        "DestZ": 15.737628
-      },
-      "Cannon": {
-        "PosX": 0.0,
-        "PosY": 0.0,
-        "PosZ": 0.43,
-        "RotX": 350.7245,
-        "RotY": 0.0005413412,
+        "PosY": -0.0077,
+        "PosZ": 0.1057,
+        "RotX": 352.376129,
+        "RotY": 5.00000048,
         "RotZ": 0.0,
-        "CurrentCooldown": 1.29996216
+        "CurrentCooldown": 4.26777029
       },
       "Turret": {
         "PosX": 0.0,
-        "PosY": 0.263,
-        "PosZ": 0.0,
+        "PosY": 0.2376,
+        "PosZ": -0.043,
         "RotX": 0.0,
-        "RotY": 235.446686,
+        "RotY": 74.8248,
         "RotZ": 0.0
       }
     },
@@ -106,33 +73,33 @@
       "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 10.0,
-      "PosX": 13.8228636,
+      "PosX": 12.6086864,
       "PosY": 0.228731826,
-      "PosZ": 13.9604769,
+      "PosZ": 11.7713213,
       "RotX": 0.0,
-      "RotY": 343.929,
+      "RotY": 115.753334,
       "RotZ": 0.0,
       "Movement": {
         "MovementSpeed": 0.0,
-        "DestX": 13.8228636,
+        "DestX": 10.283618,
         "DestY": 0.228731826,
-        "DestZ": 13.9604769
+        "DestZ": 12.9471664
       },
       "Cannon": {
         "PosX": 0.0,
         "PosY": 0.0,
         "PosZ": 0.43,
-        "RotX": 351.3402,
-        "RotY": -0.000219216658,
-        "RotZ": 3.29444523E-12,
-        "CurrentCooldown": 1.29996216
+        "RotX": 353.5084,
+        "RotY": 4.99999952,
+        "RotZ": 0.0,
+        "CurrentCooldown": 4.26777029
       },
       "Turret": {
         "PosX": 0.0,
         "PosY": 0.263,
         "PosZ": 0.0,
         "RotX": 0.0,
-        "RotY": 233.074188,
+        "RotY": 74.82484,
         "RotZ": 0.0
       }
     },
@@ -140,33 +107,33 @@
       "PrefabIndex": 0,
       "Faction": 1,
       "CurrentHP": 9.0,
-      "PosX": 12.0679436,
+      "PosX": 14.4575844,
       "PosY": 0.228731826,
-      "PosZ": 14.1222115,
+      "PosZ": 12.0437975,
       "RotX": 0.0,
-      "RotY": 345.1701,
+      "RotY": 123.715721,
       "RotZ": 0.0,
       "Movement": {
         "MovementSpeed": 0.0,
-        "DestX": 12.0679436,
+        "DestX": 12.3647442,
         "DestY": 0.228731826,
-        "DestZ": 14.1222115
+        "DestZ": 13.470706
       },
       "Cannon": {
         "PosX": 0.0,
         "PosY": 0.0,
         "PosZ": 0.43,
-        "RotX": 351.949768,
-        "RotY": -2.39781075E-05,
+        "RotX": 352.464417,
+        "RotY": 5.0,
         "RotZ": 0.0,
-        "CurrentCooldown": 1.29996216
+        "CurrentCooldown": 4.26777029
       },
       "Turret": {
         "PosX": 0.0,
         "PosY": 0.263,
         "PosZ": 0.0,
         "RotX": 0.0,
-        "RotY": 224.496567,
+        "RotY": 74.82484,
         "RotZ": 0.0
       }
     }

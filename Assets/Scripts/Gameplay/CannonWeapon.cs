@@ -15,6 +15,8 @@ public class CannonWeapon : MonoBehaviour
     public float m_elevationSpeed;
     public float m_fireVelocity; // Should this be in the projectile? Have here for now
     public float m_maxFireCooldown;
+    public float m_spread;
+
     // Around local x
     public float m_maxElevation;
     public float m_minElevation;
@@ -94,11 +96,16 @@ public class CannonWeapon : MonoBehaviour
     private void M_FireWeapon()
     {
         CannonShell newProjectile = Instantiate(m_projectilePrefab, m_cannonObj.transform.position, m_cannonObj.transform.rotation).GetComponent<CannonShell>();
+
+        System.Random random = new System.Random();
+        float spreadx = ((float)random.NextDouble() - 0.5f) * m_spread;
+        float spready = ((float)random.NextDouble() - 0.5f) * m_spread;
+        newProjectile.transform.Rotate(new Vector3(spreadx, spready));
         // Spread it some
         //float spreadx = Random.Range(-m_weaponSpread, m_weaponSpread);
         //float spready = Random.Range(-m_weaponSpread, m_weaponSpread);
         //newProjectile.transform.Rotate(spreadx, spready, 0, Space.Self);
-        newProjectile.GetComponent<Rigidbody>().velocity = m_cannonObj.transform.forward.normalized * m_fireVelocity;
+        newProjectile.GetComponent<Rigidbody>().velocity = newProjectile.transform.forward.normalized * m_fireVelocity;
         // Add firing unit to the projectile so it doesnt hit itself
         newProjectile.M_Init();
         newProjectile.m_firingUnitObject = gameObject;

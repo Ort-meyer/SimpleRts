@@ -73,6 +73,16 @@ public static class FloatExtensions
         }
         return number;
     }
+
+    public static float Sum(this float[] numbers)
+    {
+        float r = 0;
+        foreach (float f in numbers)
+        {
+            r += f;
+        }
+        return r;
+    }
 }
 
 

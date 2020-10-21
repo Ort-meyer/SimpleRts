@@ -8,32 +8,49 @@ public class TerrainTexturer : MonoBehaviour
     Terrain m_terrain;
 
     // Use this for initialization
-
-    //m_terrain = GetComponent<Terrain>();
-    ////m_terrain.terrainData.GetInterpolatedNormal();
-    ////m_terrain.terrainData.GetHeight();
-
-    //for (int x = 0; x < m_terrain.terrainData.size.x; x++)
-    //{
-    //    for (int y = 0; y < m_terrain.terrainData.size.y; y++)
-    //    {
-    //        Vector3 normal = m_terrain.terrainData.GetInterpolatedNormal(x, y);
-    //        if(normal.y < 0.5)
-    //        {
-    //            m_terrain.terrainData.set
-    //        }
-    //    }
-    //}
     void Start()
     {
+        m_terrain = Terrain.activeTerrain;
+        m_terrain.terrainData = Instantiate(m_terrain.terrainData);
+
+        M_PaintTerrain();
+        M_BumpTerrain();
+    }
+
+    private void M_BumpTerrain()
+    {
         // Get the attached terrain component
-        Terrain terrain = GetComponent<Terrain>();
 
         // Get a reference to the terrain data
-        TerrainData terrainData = terrain.terrainData;
+        TerrainData terrainData = m_terrain.terrainData;
+
+        //float[,] newHeights;
+        int mapX = terrainData.heightmapWidth;
+        int mapY = terrainData.heightmapHeight;
+
+        float[,] heights = terrainData.GetHeights(0, 0, mapX, mapY);
+
+        for (int y = 0; y < mapY; y++)
+        {
+            for (int x = 0; x < mapX; x++)
+            {
+                //heights[x, y] = heights[x, y] + 0;// Random.Range(0.0f, 0.0005f);
+
+                heights[x, y] = heights[x,y] + Random.Range(0.0f, 0.0008f);
+            }
+        }
+        terrainData.SetHeights(0, 0, heights);
+    }
+
+    private void M_PaintTerrain()
+    {
+
+        // Get a reference to the terrain data
+        TerrainData terrainData = m_terrain.terrainData;
 
         // Splatmap data is stored internally as a 3d array of floats, so declare a new empty array ready for your custom splatmap data:
         float[,,] splatmapData = new float[terrainData.alphamapWidth, terrainData.alphamapHeight, terrainData.alphamapLayers];
+
 
         for (int y = 0; y < terrainData.alphamapHeight; y++)
         {
@@ -71,6 +88,10 @@ public class TerrainTexturer : MonoBehaviour
                 //// Texture[3] increases with height but only on surfaces facing positive Z axis 
                 //splatWeights[3] = height * Mathf.Clamp01(normal.z);
 
+
+
+                // Apply the textures
+
                 // Sum of all textures weights must add to 1, so calculate normalization factor from sum of weights
                 float z = splatWeights.Sum();
 
@@ -89,7 +110,6 @@ public class TerrainTexturer : MonoBehaviour
 
         // Finally assign the new splatmap to the terrainData:
         terrainData.SetAlphamaps(0, 0, splatmapData);
-
     }
 
     // Update is called once per frame

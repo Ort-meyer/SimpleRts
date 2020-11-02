@@ -50,22 +50,22 @@ public class SimpleDebugScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.H))
-        {
-            savedObject = unitToSave.GetComponent<TankUnit>().M_GetSavedUnit().ToString();
+        //if(Input.GetKeyUp(KeyCode.H))
+        //{
+        //    savedObject = unitToSave.GetComponent<TankUnit>().M_GetSavedUnit().ToString();
             
             
-            //Debug.Log(jsonStr);
-        }
-        else if(Input.GetKey(KeyCode.J))
-        {
-            unitToSave.GetComponent<TankUnit>().M_CreateFromUnit(savedObject);
-        }
+        //    //Debug.Log(jsonStr);
+        //}
+        //else if(Input.GetKey(KeyCode.J))
+        //{
+        //    unitToSave.GetComponent<TankUnit>().M_CreateFromUnit(savedObject);
+        //}
 
-        else if (Input.GetKey(KeyCode.M))
-        {
-            M_SaveWorld();
-        }
+        //else if (Input.GetKey(KeyCode.M))
+        //{
+        //    M_SaveWorld();
+        //}
     }
 
     private void M_RightClick()

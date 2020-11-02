@@ -5,8 +5,6 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public GameObject[] m_debugunits;
-    
     // State
     public int m_faction;
     
@@ -16,10 +14,6 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //foreach (GameObject obj in m_debugunits)
-        //{
-        //    m_units.Add(obj.GetInstanceID(), obj.GetComponent<BaseUnit>());
-        //}
         foreach(BaseUnit unit in FindObjectsOfType<BaseUnit>())
         {
             if(unit.m_faction == m_faction)

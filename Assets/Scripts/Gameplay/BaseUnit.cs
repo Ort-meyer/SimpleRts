@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Newtonsoft.Json.Linq;
+using UnityEngine.AI;
 
-public abstract class BaseUnit : MonoBehaviour
+public class BaseUnit : MonoBehaviour
 {
     // Configue
-    public int m_prefabIndex;
 
     // State
     public int m_faction;
@@ -24,10 +24,26 @@ public abstract class BaseUnit : MonoBehaviour
 
     }
 
-    public abstract void M_MoveTo(Vector3 position);
-    public abstract void M_AttackOrder(Transform target);
-    public abstract void M_InflictDamage(float damage);
-    public abstract JObject M_GetSavedUnit();
-    public abstract void M_CreateFromUnit(JToken loadedUnitJson);
+    public void M_MoveTo(Vector3 position)
+    {
+        GetComponent<NavMeshAgent>().SetDestination(position);
+    }
 
+    public void M_AttackOrder(Transform target)
+    {
+        // Instruct all towers and weapons to fire at target(s)
+    }
+    public void M_InflictDamage(float damage)
+    {
+
+    }
+    public JObject M_GetSavedUnit()
+    {
+        // Get hull, turrets and weapon jobjects
+        return new JObject();
+    }
+    public void M_CreateFromUnit(JToken loadedUnitJson)
+    {
+        // Create in hull, turret and weapon jobjects
+    }
 }

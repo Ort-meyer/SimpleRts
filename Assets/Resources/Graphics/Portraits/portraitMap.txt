@@ -1,0 +1,4 @@
+0;MainCharacter
+1;SideKick
+2;QuestGiver
+3;empty

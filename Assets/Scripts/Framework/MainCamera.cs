@@ -20,6 +20,7 @@ public class MainCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log("get to work ffs");
         //configData = new MainCameraConfigData();
 
         // Key movement

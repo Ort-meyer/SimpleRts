@@ -24,6 +24,7 @@ public class Dialogue : MonoBehaviour
         if(unit)
         {
             DialogueManager.Instance.M_StartConversation(this);
+            unit.GetComponent<TankMovement>().M_StopMoving();
         }
     }
 

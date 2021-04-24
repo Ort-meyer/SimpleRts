@@ -13,8 +13,13 @@ public class GameManager : Singleton<GameManager>
     // Use this for initialization
     void Start()
     {
+    }
+
+    private void Awake()
+    {
+
         m_players = new Dictionary<int, Player>();
-        foreach(Player player in FindObjectsOfType<Player>())
+        foreach (Player player in FindObjectsOfType<Player>())
         {
             m_players[player.m_faction] = player;
         }

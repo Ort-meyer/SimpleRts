@@ -575,6 +575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066a29e919aa6214293ef0ee109a6901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_launcherObject: {fileID: 0}
+  m_projectilePrefab: {fileID: 0}
+  m_maxFireCooldown: 0
 --- !u!195 &195184533645770570
 NavMeshAgent:
   m_ObjectHideFlags: 1

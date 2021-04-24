@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1719221980756056
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unitPrefabs:
-  - {fileID: 1401579034597698, guid: a2591c7aa86ef9447b8a438b7439ef20, type: 2}
-  - {fileID: 1864558847251722, guid: da26af575344ea74cb761e1bca003d49, type: 2}
+  - {fileID: 1355395073827600, guid: ebf69aaa29631994eb67e566db6ed08e, type: 2}
+  m_hullPrefabs:
+  - {fileID: 1855833702712768, guid: 055ceced5edd4154a8b07fd745ae3d2d, type: 2}
 --- !u!114 &114247918744563680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,7 +430,6 @@ MonoBehaviour:
   m_playerSentencePrefab: {fileID: 1561893139250120, guid: f340001d823efad4e8ddd3421ea24729,
     type: 2}
   m_totalNumRowsInWindow: 10
-  m_BUILDDEBUGOBJECT: {fileID: 0}
 --- !u!114 &114849148604666742
 MonoBehaviour:
   m_ObjectHideFlags: 1

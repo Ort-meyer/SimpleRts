@@ -12,10 +12,15 @@ public class BaseUnit : MonoBehaviour
     // State
     public int m_faction;
 
+    private List<BaseTurret> m_turrets = new List<BaseTurret>();
+    private List<BaseWeapon> m_weapons = new List<BaseWeapon>();
+
+    public GameObject DEBUGturretObj;
+
     // Use this for initialization
     void Start()
     {
-
+        m_turrets.AddRange(GetComponentsInChildren<BaseTurret>());
     }
 
     // Update is called once per frame
@@ -32,6 +37,11 @@ public class BaseUnit : MonoBehaviour
     public void M_AttackOrder(Transform target)
     {
         // Instruct all towers and weapons to fire at target(s)
+        foreach (BaseTurret turret in m_turrets)
+        {
+            turret.M_SetTarget(target);
+        }
+
     }
     public void M_InflictDamage(float damage)
     {

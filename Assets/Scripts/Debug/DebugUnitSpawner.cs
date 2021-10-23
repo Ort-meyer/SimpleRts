@@ -9,6 +9,8 @@ public class DebugUnitSpawner : MonoBehaviour
 
     public Transform m_debugMoveToPos;
 
+    public GameObject debugUnit;
+
     // Use this for initialization
     void Start()
     {
@@ -33,6 +35,8 @@ public class DebugUnitSpawner : MonoBehaviour
             kvp.Value.M_MoveTo(m_debugMoveToPos.position);
         }
         Debug.Log("done");
+
+        debugUnit.GetComponent<BaseUnit>().M_AttackOrder(m_debugMoveToPos);
     }
 
     // Update is called once per frame

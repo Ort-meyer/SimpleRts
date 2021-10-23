@@ -73,6 +73,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4983241054322706}
+  - component: {fileID: 114136792457768752}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -106,6 +107,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4628009615283988}
+  - component: {fileID: 114420977551661682}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -209,10 +211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4286311760670442}
   - component: {fileID: 114526635581968396}
-  - component: {fileID: 114356899183220146}
-  - component: {fileID: 114429629810749562}
   - component: {fileID: 195017081676570802}
-  - component: {fileID: 114982444745029320}
+  - component: {fileID: 114862900071070160}
   m_Layer: 0
   m_Name: OldBuggy
   m_TagString: Untagged
@@ -829,47 +829,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114356899183220146
+--- !u!114 &114136792457768752
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1864558847251722}
+  m_GameObject: {fileID: 1392623183484620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9829533019cff9d4cb4ad4b4f6f90ec7, type: 3}
+  m_Script: {fileID: 11500000, guid: 51e4dc1f4466fba46adab29787cf163a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cannonObj: {fileID: 1447885216668768}
-  m_projectilePrefab: {fileID: 1273163734357586, guid: 6fd9faeb2d7e9974d99c97826ddf577c,
-    type: 2}
-  m_elevationSpeed: 100
-  m_fireVelocity: 20
-  m_maxFireCooldown: 0.15
-  m_spread: 5
-  m_maxElevation: 30
-  m_minElevation: 10
-  m_maxTraverse: 5
---- !u!114 &114429629810749562
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1864558847251722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af78665d3ea147a4e8c0963ace137fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_turretObj: {fileID: 1392623183484620}
   m_rotationSpeed: 300
+--- !u!114 &114420977551661682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447885216668768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e511713ebac5d43ae65c519e82b8cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114526635581968396
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864558847251722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5422668673f0aab4cb3d7da945a8d0e1, type: 3}
   m_Name: 
@@ -881,7 +870,7 @@ MonoBehaviour:
   m_rotationSpeed: 0
   m_movementSpeed: 0
   m_destination: {x: 0, y: 0, z: 0}
---- !u!114 &114982444745029320
+--- !u!114 &114862900071070160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -889,12 +878,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1864558847251722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c458190df29fb845a460e0894d2d06f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ddae8987d1db2044ba4541523368def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_prefabIndex: 1
   m_faction: 1
-  m_maxHp: 5
+  DEBUGturretObj: {fileID: 1392623183484620}
 --- !u!135 &135569248117238358
 SphereCollider:
   m_ObjectHideFlags: 1

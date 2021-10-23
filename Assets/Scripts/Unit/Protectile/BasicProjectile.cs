@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class CannonShell : MonoBehaviour
+public class BasicProjectile : MonoBehaviour
 {
     public GameObject m_impactEffectPrefab;
 

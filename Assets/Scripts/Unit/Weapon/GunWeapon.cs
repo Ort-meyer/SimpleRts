@@ -84,7 +84,7 @@ public class GunWeapon : BaseWeapon
 
     private void M_FireWeapon()
     {
-        CannonShell newProjectile = Instantiate(m_projectilePrefab, transform.position, transform.rotation).GetComponent<CannonShell>();
+        BasicProjectile newProjectile = Instantiate(m_projectilePrefab, transform.position, transform.rotation).GetComponent<BasicProjectile>();
 
         System.Random random = new System.Random();
         float spreadx = ((float)random.NextDouble() - 0.5f) * m_spread;

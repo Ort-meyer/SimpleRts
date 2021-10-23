@@ -852,6 +852,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e511713ebac5d43ae65c519e82b8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_projectilePrefab: {fileID: 1263439907693766, guid: 1c7c1b163e1e5564b9515bc539537740,
+    type: 2}
+  m_elevationSpeed: 100
+  m_fireVelocity: 20
+  m_maxFireCooldown: 1
+  m_spread: 5
+  m_maxElevation: 30
+  m_minElevation: 10
+  m_maxTraverse: 5
 --- !u!114 &114526635581968396
 MonoBehaviour:
   m_ObjectHideFlags: 1

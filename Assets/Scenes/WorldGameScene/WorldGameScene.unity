@@ -173,17 +173,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da26af575344ea74cb761e1bca003d49, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &876160375 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1392623183484620, guid: da26af575344ea74cb761e1bca003d49,
-    type: 2}
-  m_PrefabInternal: {fileID: 1015982944}
---- !u!114 &876160376 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114136792457768752, guid: da26af575344ea74cb761e1bca003d49,
-    type: 2}
-  m_PrefabInternal: {fileID: 1015982944}
-  m_Script: {fileID: 11500000, guid: 51e4dc1f4466fba46adab29787cf163a, type: 3}
 --- !u!1001 &1015982944
 Prefab:
   m_ObjectHideFlags: 0
@@ -227,31 +216,7 @@ Prefab:
       propertyPath: m_Name
       value: PlayerBuggy
       objectReference: {fileID: 0}
-    - target: {fileID: 114526635581968396, guid: da26af575344ea74cb761e1bca003d49,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114862900071070160, guid: da26af575344ea74cb761e1bca003d49,
-        type: 2}
-      propertyPath: DEBUGturret
-      value: 
-      objectReference: {fileID: 876160376}
-    - target: {fileID: 114862900071070160, guid: da26af575344ea74cb761e1bca003d49,
-        type: 2}
-      propertyPath: DEBUGturretObj
-      value: 
-      objectReference: {fileID: 876160375}
-    - target: {fileID: 114136792457768752, guid: da26af575344ea74cb761e1bca003d49,
-        type: 2}
-      propertyPath: m_rotationSpeed
-      value: 300
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114648371475257854, guid: da26af575344ea74cb761e1bca003d49, type: 2}
-    - {fileID: 114851231218288714, guid: da26af575344ea74cb761e1bca003d49, type: 2}
-    - {fileID: 114429629810749562, guid: da26af575344ea74cb761e1bca003d49, type: 2}
-    - {fileID: 114356899183220146, guid: da26af575344ea74cb761e1bca003d49, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da26af575344ea74cb761e1bca003d49, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1086431453

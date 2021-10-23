@@ -21,6 +21,7 @@ public class BaseUnit : MonoBehaviour
     void Start()
     {
         m_turrets.AddRange(GetComponentsInChildren<BaseTurret>());
+        m_weapons.AddRange(GetComponentsInChildren<BaseWeapon>());
     }
 
     // Update is called once per frame
@@ -40,6 +41,10 @@ public class BaseUnit : MonoBehaviour
         foreach (BaseTurret turret in m_turrets)
         {
             turret.M_SetTarget(target);
+        }
+        foreach(BaseWeapon weapon in m_weapons)
+        {
+            weapon.M_SetTarget(target);
         }
 
     }

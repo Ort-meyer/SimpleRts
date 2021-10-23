@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 
-public class CannonWeapon : MonoBehaviour
+public class CannonWeapon : BaseWeapon
 {
     public GameObject m_cannonObj;
     public GameObject m_projectilePrefab;
@@ -24,7 +24,7 @@ public class CannonWeapon : MonoBehaviour
     public float m_maxTraverse;
 
     // State
-    private Transform m_target;
+
     private float m_currentFireCooldown;
     
 

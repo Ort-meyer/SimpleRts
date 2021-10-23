@@ -12,7 +12,7 @@ public class BasicProjectile : MonoBehaviour
 
     // State
     private Transform m_target;
-    private float m_speed;
+    //private float m_speed;
     public GameObject m_firingUnitObject;
 
     // Use this for initialization
@@ -35,7 +35,7 @@ public class BasicProjectile : MonoBehaviour
     public void M_FireAtTarget(float fireSpeed, Transform target)
     {
         m_target = target;
-        m_speed = fireSpeed;
+        //m_speed = fireSpeed;
     }
 
     void OnTriggerEnter(Collider other)

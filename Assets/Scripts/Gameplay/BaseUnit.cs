@@ -15,8 +15,6 @@ public class BaseUnit : MonoBehaviour
     private List<BaseTurret> m_turrets = new List<BaseTurret>();
     private List<BaseWeapon> m_weapons = new List<BaseWeapon>();
 
-    public GameObject DEBUGturretObj;
-
     // Use this for initialization
     void Start()
     {

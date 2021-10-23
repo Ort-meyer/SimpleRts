@@ -37,7 +37,7 @@ public class InputManager : Singleton<InputManager>
 
         public void CallIfConditionsFullfilled()
         {
-            KeyCode code = (KeyCode)(int)modifier;
+            //KeyCode code = (KeyCode)(int)modifier;
             switch (modifier)
             {
                 case KeyModifier.None:

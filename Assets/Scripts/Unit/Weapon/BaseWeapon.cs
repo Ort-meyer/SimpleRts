@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
+    // Configure
+    public int m_weaponIndex;
+
     // State
     protected Transform m_target;
 

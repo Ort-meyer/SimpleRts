@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaseTurret : MonoBehaviour
 {
+    // Configure
+    public int m_turretIndex;
+
     // State
     protected Transform m_target;
 

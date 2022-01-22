@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaseHull : MonoBehaviour
 {
+    // Configure
+    public int m_hullIndex;
+
     // Use this for initialization
     void Start()
     {

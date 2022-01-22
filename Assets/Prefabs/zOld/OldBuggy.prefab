@@ -855,8 +855,8 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 1273163734357586, guid: 6fd9faeb2d7e9974d99c97826ddf577c,
     type: 2}
   m_elevationSpeed: 100
-  m_fireVelocity: 20
-  m_maxFireCooldown: 0.1
+  m_fireVelocity: 17
+  m_maxFireCooldown: 0.17
   m_spread: 5
   m_maxElevation: 30
   m_minElevation: 10
@@ -891,7 +891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_faction: 1
-  DEBUGturretObj: {fileID: 1392623183484620}
 --- !u!135 &135569248117238358
 SphereCollider:
   m_ObjectHideFlags: 1

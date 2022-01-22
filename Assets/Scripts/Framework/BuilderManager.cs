@@ -7,6 +7,8 @@ public class BuilderManager : Singleton<BuilderManager>
     public List<GameObject> m_unitPrefabs;
 
     public List<GameObject> m_hullPrefabs;
+    public List<GameObject> m_turretPrefabs;
+    public List<GameObject> m_weaponPrefabs;
 
     // Use this for initialization
     void Start()
